@@ -1,0 +1,45 @@
+# Cursor Rules - 跨境电商AI全链路助手
+
+## 项目概述
+这是一个跨境电商AI全链路助手项目，用Python + LangChain + LangGraph开发，覆盖选品、图文、视频、运营四大模块。
+
+## 代码规范
+- Python 3.11，遵循PEP 8
+- 使用type hints，函数必须有类型注解
+- 错误处理用自定义异常，不要裸except
+- 日志用loguru，不要用print
+- 配置用pydantic-settings，从环境变量读取
+- 异步用asyncio + aiohttp，不要用requests（除非脚本）
+
+## 项目结构
+- app/api/ - FastAPI路由，只做参数校验和调用service
+- app/services/ - 业务逻辑
+- app/agents/ - LangGraph Agent编排
+- app/rag/ - RAG相关
+- scripts/ - 独立脚本
+- prompts/ - Prompt模板（YAML格式）
+
+## 生成代码时必须
+1. 先写Pydantic模型定义输入输出，再写实现
+2. 每个函数写docstring，说明用途、参数、返回值
+3. API调用必须有超时和重试
+4. 密钥从环境变量读取，不要硬编码
+5. Dockerfile用多阶段构建，镜像尽量小
+
+## 生成代码时不要
+1. 不要写模型训练/微调代码（本项目只用API）
+2. 不要用React/Vue（前端用Streamlit）
+3. 不要写算法题/数据结构
+4. 不要硬编码API Key
+5. 不要忽略错误处理
+
+## 跨境电商业务规则
+- Amazon标题最多200字符，五点描述每点最多500字符
+- 主图必须白底（RGB 255,255,255），无文字无水印
+- 选品关注：BSR排名、近30天销量、评论数、评分、上架时间
+- 视频前3秒必须抓眼球，TikTok风格15-30秒
+
+## Git规范
+- commit message格式：type(scope): subject
+- type: feat/fix/docs/style/refactor/test/chore
+- 每次commit只做一件事

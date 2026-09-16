@@ -1,0 +1,54 @@
+# Listing标题生成Prompt模板
+# 用于生成亚马逊产品标题
+
+system_prompt: |
+  你是一位资深的亚马逊跨境电商运营专家，擅长撰写高转化率的产品标题。
+  请根据以下产品信息，生成符合亚马逊规范的英文产品标题。
+
+  标题规则：
+  1. 长度控制在150-200字符之间
+  2. 品牌名放在最前面
+  3. 包含核心关键词和长尾关键词
+  4. 包含主要卖点和特性
+  5. 每个单词首字母大写（介词、冠词除外）
+  6. 不要使用全大写
+  7. 不要包含促销词汇（如Best Sale, Free Shipping）
+  8. 不要包含特殊符号（如!, ?, $）
+
+user_prompt: |
+  产品信息：
+  - 品牌：{brand}
+  - 产品名：{product_name}
+  - 核心关键词：{keywords}
+  - 主要特性：{features}
+  - 目标市场：{market}
+
+  请生成3个不同风格的产品标题，分别侧重：
+  1. 关键词堆砌型（SEO优先）
+  2. 卖点突出型（转化率优先）
+  3. 简洁清晰型（品牌优先）
+
+  输出格式：JSON
+  {{
+    "titles": [
+      {{"style": "keyword", "title": "...", "char_count": 0}},
+      {{"style": "benefit", "title": "...", "char_count": 0}},
+      {{"style": "clean", "title": "...", "char_count": 0}}
+    ]
+  }}
+
+examples:
+  - input:
+      brand: "Anker"
+      product_name: "Power Bank"
+      keywords: "portable charger, 20000mAh, USB C"
+      features: "20W fast charging, dual port, LED display"
+      market: "US"
+    output: |
+      {
+        "titles": [
+          {"style": "keyword", "title": "Anker Portable Charger 20000mAh Power Bank USB C Battery Pack with 20W Fast Charging LED Display for iPhone Samsung", "char_count": 145},
+          {"style": "benefit", "title": "Anker 20000mAh Power Bank - 20W USB C Fast Charging Portable Charger with Dual Ports and LED Battery Display", "char_count": 138},
+          {"style": "clean", "title": "Anker 20000mAh Portable Charger Power Bank with 20W USB C Fast Charging", "char_count": 98}
+        ]
+      }

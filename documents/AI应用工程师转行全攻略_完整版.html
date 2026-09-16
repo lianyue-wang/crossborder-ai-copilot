@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI应用工程师转行全攻略 · 完整版</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f2540'/%3E%3Ctext x='32' y='44' font-size='32' text-anchor='middle' fill='%23ed8936' font-weight='bold'%3EA%3C/text%3E%3C/svg%3E">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+:root{
+  --primary:#0f2540;
+  --primary-light:#1a3a5c;
+  --primary-lighter:#2a4a6c;
+  --accent:#ed8936;
+  --green:#38a169;
+  --red:#e53e3e;
+  --orange:#dd6b20;
+  --bg:#f7f9fc;
+  --card:#ffffff;
+  --text:#2d3748;
+  --text-light:#718096;
+  --border:#e2e8f0;
+  --p0:#ed8936;
+  --p1:#3182ce;
+  --p2:#a0aec0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+/* Sidebar */
+.sidebar{position:fixed;top:0;left:0;width:260px;height:100vh;background:var(--primary);color:#fff;padding:24px 0;overflow-y:auto;z-index:100;}
+.sidebar h2{font-size:16px;padding:0 24px 16px;border-bottom:1px solid rgba(255,255,255,.15);margin-bottom:12px;color:#fff;}
+.sidebar a{display:block;color:#cbd5e0;text-decoration:none;padding:8px 24px;font-size:13px;transition:all .2s;border-left:3px solid transparent;}
+.sidebar a:hover,.sidebar a.active{color:#fff;background:rgba(255,255,255,.08);border-left-color:var(--accent);}
+.sidebar .nav-sub{padding-left:36px;font-size:12px;color:#a0aec0;}
+/* Main */
+.main{margin-left:260px;padding:40px 48px;max-width:1100px;}
+section{margin-bottom:56px;scroll-margin-top:20px;}
+h1{font-size:32px;color:var(--primary);margin-bottom:8px;line-height:1.3;}
+h2{font-size:24px;color:var(--primary);margin-bottom:20px;padding-bottom:10px;border-bottom:3px solid var(--accent);display:inline-block;}
+h3{font-size:18px;color:var(--primary-light);margin:24px 0 12px;}
+h4{font-size:15px;color:var(--primary-light);margin:16px 0 8px;}
+p{margin-bottom:12px;}
+.subtitle{color:var(--text-light);font-size:14px;margin-bottom:24px;}
+/* Cards */
+.card{background:var(--card);border-radius:10px;padding:20px 24px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid var(--border);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:16px 0;}
+.stat-card{background:var(--card);border-radius:10px;padding:20px;border:1px solid var(--border);text-align:center;}
+.stat-num{font-size:32px;font-weight:700;color:var(--primary);}
+.stat-label{font-size:13px;color:var(--text-light);margin-top:4px;}
+/* Risk cards */
+.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:16px 0;}
+.risk-card{border-radius:10px;padding:20px;color:#fff;}
+.risk-low{background:var(--green);}
+.risk-mid{background:var(--orange);}
+.risk-high{background:var(--red);}
+.risk-card .pct{font-size:36px;font-weight:700;}
+.risk-card .label{font-size:14px;opacity:.9;margin:4px 0 12px;}
+.risk-card ul{font-size:13px;list-style:none;}
+.risk-card li{padding:3px 0;opacity:.95;}
+/* Progress bar */
+.skill-row{display:flex;align-items:center;margin-bottom:10px;gap:12px;}
+.skill-name{width:220px;font-size:14px;flex-shrink:0;}
+.skill-bar{flex:1;height:22px;background:#edf2f7;border-radius:4px;overflow:hidden;position:relative;}
+.skill-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:12px;font-weight:600;min-width:40px;}
+.p0{background:var(--p0);}
+.p1{background:var(--p1);}
+.p2{background:var(--p2);}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;color:#fff;margin-left:6px;}
+.tag-p0{background:var(--p0);}
+.tag-p1{background:var(--p1);}
+.tag-p2{background:var(--p2);}
+/* Tables */
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:8px;overflow:hidden;margin:12px 0;font-size:13px;}
+th{background:var(--primary);color:#fff;padding:10px 12px;text-align:left;font-weight:600;}
+td{padding:9px 12px;border-bottom:1px solid var(--border);}
+tr:nth-child(even) td{background:#f7fafc;}
+tr:hover td{background:#ebf4ff;}
+tr.milestone td{background:#fff5e6 !important;font-weight:600;border-left:4px solid var(--accent);}
+tr.milestone:hover td{background:#ffe8cc !important;}
+/* Details */
+details{background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:10px;overflow:hidden;}
+summary{padding:14px 18px;cursor:pointer;font-weight:600;color:var(--primary);font-size:14px;background:#f7fafc;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+summary:hover{background:#edf2f7;}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:"▼";font-size:11px;color:var(--text-light);transition:transform .2s;}
+details[open] summary::after{transform:rotate(180deg);}
+.details-body{padding:16px 18px;font-size:14px;}
+/* Mermaid */
+.mermaid{background:#fff;padding:20px;border-radius:8px;border:1px solid var(--border);text-align:center;margin:16px 0;}
+/* Badges */
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:12px;font-weight:600;}
+.badge-green{background:#c6f6d5;color:#22543d;}
+.badge-orange{background:#feebc8;color:#7b341e;}
+.badge-red{background:#fed7d7;color:#742a2a;}
+.badge-blue{background:#bee3f8;color:#2a4365;}
+/* Timeline */
+.phase-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0;}
+.phase-card{background:var(--card);border-radius:8px;padding:16px;border-top:4px solid var(--accent);border:1px solid var(--border);}
+.phase-card .ph-week{font-size:12px;color:var(--accent);font-weight:700;}
+.phase-card .ph-title{font-size:15px;font-weight:600;color:var(--primary);margin:4px 0;}
+.phase-card .ph-desc{font-size:12px;color:var(--text-light);}
+/* TOC appendix */
+.appendix-table{font-size:12px;}
+.appendix-table th{font-size:11px;padding:8px;}
+.appendix-table td{padding:6px 8px;}
+/* Footer */
+footer{margin-top:60px;padding:24px 0;border-top:1px solid var(--border);color:var(--text-light);font-size:12px;text-align:center;}
+/* Responsive */
+@media(max-width:900px){
+  .sidebar{display:none;}
+  .main{margin-left:0;padding:20px;}
+  .risk-grid{grid-template-columns:1fr;}
+  .phase-grid{grid-template-columns:1fr 1fr;}
+  .skill-name{width:140px;font-size:12px;}
+}
+</style>
+</head>
+<body>
+<nav class="sidebar">
+  <h2>AI应用工程师转行全攻略</h2>
+  <a href="#s1">1. 转行可行性分析</a>
+  <a href="#s2">2. 岗位市场画像（100样本）</a>
+  <a href="#s3">3. 学习优先级</a>
+  <a href="#s4">4. 全流程项目方案</a>
+  <a href="#s5">5. 24周逐周计划</a>
+  <a href="#s6">6. 6个里程碑详情</a>
+  <a href="#s7">7. 求职准备全攻略</a>
+  <a href="#s8">8. 风险控制与Plan B</a>
+  <a href="#s9">9. 每日时间安排</a>
+  <a href="#s10">10. 立即行动清单</a>
+  <a href="#s11">附录：100岗位明细</a>
+</nav>
+<div class="main">
+
+<!-- ===== Section 1 ===== -->
+<section id="s1">
+<h1>AI应用工程师转行全攻略</h1>
+<p class="subtitle">基于100个真实岗位数据 + 跨境电商AI全链路助手项目方案 · 24周转行计划 · 成都 · 2027年3月入职</p>
+
+<h2>1. 转行可行性分析</h2>
+
+<h3>背景与核心策略</h3>
+<div class="card">
+<p><strong>个人背景：</strong>中专学历（用假大专入职）、自学半年Java（只会CRUD）、会用Cursor/Copilot、懂跨境电商选品/运营/供应链全流程、成都、目标2027年3月入职、薪资10-15K、在职每天晚3h+周末8h。</p>
+<p><strong>核心策略：</strong>放弃Java转Python，聚焦AI应用层；用"懂跨境电商业务+AI落地"做差异化；项目为跨境电商AI全链路助手（约10,750行）；学历写大专只投不查学信网的中小公司；全程用Cursor辅助开发。</p>
+</div>
+
+<h3>数据支撑：这条路走得通</h3>
+<div class="card-grid">
+  <div class="stat-card"><div class="stat-num">100</div><div class="stat-label">真实岗位样本</div></div>
+  <div class="stat-card"><div class="stat-num">68%</div><div class="stat-label">低学历风险岗位</div></div>
+  <div class="stat-card"><div class="stat-num">86%</div><div class="stat-label">要求Python</div></div>
+  <div class="stat-card"><div class="stat-num">78%</div><div class="stat-label">要求Agent开发</div></div>
+</div>
+
+<div class="card">
+<h4>关键结论</h4>
+<p>100个岗位中，<strong>68个（68%）为低学历风险</strong>——0-50人创业公司、未融资/天使轮、传统行业AI转型、远程/项目制，这些公司连HR都没有，入职只看能不能干活。技能要求上，Python(86%)、Agent(78%)、RAG(72%)为三大核心，且<strong>模型微调在大专岗中占比0%</strong>，完全不需要碰算法。成都岗位LangChain要求49%（低于一线63%），但AI编程工具要求43%（高于一线35%），更务实。</p>
+</div>
+</section>
+
+<!-- ===== Section 2 ===== -->
+<section id="s2">
+<h2>2. 岗位市场画像（100样本）</h2>
+
+<h3>样本概述</h3>
+<table>
+<colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup>
+<tr><th>维度</th><th>分布</th><th>说明</th></tr>
+<tr><td>地域</td><td>成都35个 + 外地65个</td><td>成都重点标注</td></tr>
+<tr><td>学历要求</td><td>本科62个 + 大专38个</td><td>大专岗Dify使用率55%</td></tr>
+<tr><td>学历风险</td><td>低风险68 + 中风险26 + 高风险6</td><td>68%可放心投递</td></tr>
+<tr><td>公司规模</td><td>0-50人45个 + 50-200人55个</td><td>小公司看重AI工具+全栈</td></tr>
+</table>
+
+<h3>技能频率 TOP15</h3>
+<div class="card">
+<div class="skill-row"><span class="skill-name">Python</span><div class="skill-bar"><div class="skill-fill p0" style="width:86%">86%</div></div><span class="tag tag-p0">P0</span></div>
+<div class="skill-row"><span class="skill-name">AI Agent/智能体开发</span><div class="skill-bar"><div class="skill-fill p0" style="width:78%">78%</div></div><span class="tag tag-p0">P0</span></div>
+<div class="skill-row"><span class="skill-name">RAG检索增强生成</span><div class="skill-bar"><div class="skill-fill p0" style="width:72%">72%</div></div><span class="tag tag-p0">P0</span></div>
+<div class="skill-row"><span class="skill-name">LangChain</span><div class="skill-bar"><div class="skill-fill p0" style="width:58%">58%</div></div><span class="tag tag-p0">P0</span></div>
+<div class="skill-row"><span class="skill-name">Prompt Engineering</span><div class="skill-bar"><div class="skill-fill p0" style="width:55%">55%</div></div><span class="tag tag-p0">P0</span></div>
+<div class="skill-row"><span class="skill-name">大模型API调用</span><div class="skill-bar"><div class="skill-fill p0" style="width:52%">52%</div></div><span class="tag tag-p0">P0</span></div>
+<div class="skill-row"><span class="skill-name">向量数据库</span><div class="skill-bar"><div class="skill-fill p0" style="width:48%">48%</div></div><span class="tag tag-p0">P0</span></div>
+<div class="skill-row"><span class="skill-name">Dify低代码平台</span><div class="skill-bar"><div class="skill-fill p1" style="width:42%">42%</div></div><span class="tag tag-p1">P1</span></div>
+<div class="skill-row"><span class="skill-name">AI编程工具Cursor/Copilot</span><div class="skill-bar"><div class="skill-fill p0" style="width:38%">38%</div></div><span class="tag tag-p0">P0</span></div>
+<div class="skill-row"><span class="skill-name">全栈开发能力</span><div class="skill-bar"><div class="skill-fill p1" style="width:35%">35%</div></div><span class="tag tag-p1">P1</span></div>
+<div class="skill-row"><span class="skill-name">MySQL/PostgreSQL</span><div class="skill-bar"><div class="skill-fill p1" style="width:32%">32%</div></div><span class="tag tag-p1">P1</span></div>
+<div class="skill-row"><span class="skill-name">FastAPI/Flask</span><div class="skill-bar"><div class="skill-fill p1" style="width:30%">30%</div></div><span class="tag tag-p1">P1</span></div>
+<div class="skill-row"><span class="skill-name">Coze</span><div class="skill-bar"><div class="skill-fill p2" style="width:28%">28%</div></div><span class="tag tag-p2">P2</span></div>
+<div class="skill-row"><span class="skill-name">Java</span><div class="skill-bar"><div class="skill-fill p2" style="width:25%">25%</div></div><span class="tag tag-p2">P2</span></div>
+<div class="skill-row"><span class="skill-name">Docker</span><div class="skill-bar"><div class="skill-fill p2" style="width:20%">20%</div></div><span class="tag tag-p2">P2</span></div>
+</div>
+
+<h3>分组对比</h3>
+<div class="card">
+<h4>成都 vs 一线城市</h4>
+<table>
+<colgroup><col style="width:25%"><col style="width:25%"><col style="width:25%"><col style="width:25%"></colgroup>
+<tr><th>技能</th><th>成都(35)</th><th>一线(65)</th><th>差异</th></tr>
+<tr><td>LangChain</td><td>49%</td><td>63%</td><td>-14% 成都要求更低</td></tr>
+<tr><td>Dify</td><td>46%</td><td>40%</td><td>+6% 成都更依赖低代码</td></tr>
+<tr><td>AI编程工具</td><td>43%</td><td>35%</td><td>+8% 成都更看重效率</td></tr>
+<tr><td>Java</td><td>31%</td><td>22%</td><td>+9% 成都传统IT多</td></tr>
+<tr><td>全栈开发</td><td>40%</td><td>32%</td><td>+8% 成都一人多能</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>0-50人 vs 50-200人公司</h4>
+<table>
+<colgroup><col style="width:33%"><col style="width:33%"><col style="width:34%"></colgroup>
+<tr><th>技能</th><th>0-50人(45)</th><th>50-200人(55)</th></tr>
+<tr><td>AI编程工具</td><td>49%</td><td>29%</td></tr>
+<tr><td>全栈开发</td><td>47%</td><td>25%</td></tr>
+<tr><td>Dify</td><td>51%</td><td>35%</td></tr>
+<tr><td>LangChain</td><td>42%</td><td>71%</td></tr>
+<tr><td>向量数据库</td><td>33%</td><td>60%</td></tr>
+</table>
+<p style="font-size:13px;color:var(--text-light);margin-top:8px">公司越小越看重AI工具/全栈/低代码；公司越大越要求技术深度。</p>
+</div>
+
+<div class="card">
+<h4>本科岗 vs 大专岗</h4>
+<table>
+<colgroup><col style="width:33%"><col style="width:33%"><col style="width:34%"></colgroup>
+<tr><th>技能</th><th>本科岗(62)</th><th>大专岗(38)</th></tr>
+<tr><td>Python</td><td>95%</td><td>71%</td></tr>
+<tr><td>LangChain</td><td>71%</td><td>37%</td></tr>
+<tr><td>Dify</td><td>34%</td><td>55%</td></tr>
+<tr><td>AI编程工具</td><td>29%</td><td>53%</td></tr>
+<tr><td>模型微调</td><td>24%</td><td>0%</td></tr>
+<tr><td>Java</td><td>18%</td><td>37%</td></tr>
+</table>
+</div>
+
+<h3>学历风险评估</h3>
+<div class="risk-grid">
+  <div class="risk-card risk-low">
+    <div class="pct">68%</div>
+    <div class="label">低风险（68个）放心投递</div>
+    <ul>
+      <li>0-50人创业公司</li>
+      <li>未融资/天使轮</li>
+      <li>传统行业+AI转型</li>
+      <li>远程/项目制</li>
+      <li>外包小公司</li>
+    </ul>
+  </div>
+  <div class="risk-card risk-mid">
+    <div class="pct">26%</div>
+    <div class="label">中风险（26个）可投</div>
+    <ul>
+      <li>50-200人A/B轮</li>
+      <li>简单HR流程不背调</li>
+      <li>JD只写"本科"未写"统招"</li>
+      <li>面试突出技术能力</li>
+    </ul>
+  </div>
+  <div class="risk-card risk-high">
+    <div class="pct">6%</div>
+    <div class="label">高风险（6个）不建议投</div>
+    <ul>
+      <li>200人以上有完善HR</li>
+      <li>明确写"统招本科"</li>
+      <li>有背调流程</li>
+    </ul>
+  </div>
+</div>
+
+<h3>薪资区间（成都）</h3>
+<table>
+<colgroup><col style="width:40%"><col style="width:30%"><col style="width:30%"></colgroup>
+<tr><th>岗位类型</th><th>成都薪资</th><th>匹配度</th></tr>
+<tr><td>AI应用开发（低风险）</td><td><strong>8-15K</strong></td><td><span class="badge badge-green">★★★★★ 目标</span></td></tr>
+<tr><td>全栈智能体开发</td><td>10-18K</td><td><span class="badge badge-green">★★★★☆</span></td></tr>
+<tr><td>Dify/Coze低代码开发</td><td>7-15K</td><td><span class="badge badge-blue">★★★★☆</span></td></tr>
+<tr><td>AI应用工程师(1-3年)</td><td>9-16K</td><td><span class="badge badge-blue">★★★★☆</span></td></tr>
+<tr><td>RAG工程师(入门)</td><td>7-12K</td><td><span class="badge badge-orange">★★★☆☆</span></td></tr>
+</table>
+
+<h3>中小公司AI应用岗能力画像</h3>
+<div class="card">
+<p><strong>画像：</strong>一个会用AI工具快速产出代码、懂点业务逻辑、能独立跑通完整项目的"全栈型选手"——不要求算法深度，要求落地速度。</p>
+<table>
+<colgroup><col style="width:20%"><col style="width:40%"><col style="width:40%"></colgroup>
+<tr><th>维度</th><th>大厂要求</th><th>中小公司真实要求</th></tr>
+<tr><td>编程能力</td><td>精通Python手写代码</td><td>会用Cursor快速产出，能看懂代码</td></tr>
+<tr><td>技术深度</td><td>LangChain/RAG全套精通</td><td>用过Dify搭demo就行，LangChain了解即可</td></tr>
+<tr><td>学历</td><td>本科起步</td><td>大专即可，68%不查学信网</td></tr>
+<tr><td>模型训练</td><td>LoRA/QLoRA微调</td><td><strong>完全不需要</strong>，用API就行</td></tr>
+</table>
+</div>
+</section>
+
+<!-- ===== Section 3 ===== -->
+<section id="s3">
+<h2>3. 学习优先级</h2>
+
+<h3>P0 必学（W1-8）</h3>
+<div class="card">
+<table>
+<colgroup><col style="width:25%"><col style="width:15%"><col style="width:60%"></colgroup>
+<tr><th>技能</th><th>频率</th><th>学习目标</th></tr>
+<tr><td>Python</td><td>86%</td><td>函数/类/装饰器/异步asyncio/JSON-CSV/HTTP调用</td></tr>
+<tr><td>大模型API调用</td><td>52%</td><td>DeepSeek/Qwen API，消息结构，流式输出，function calling</td></tr>
+<tr><td>Prompt Engineering</td><td>55%</td><td>角色设定/Few-shot/CoT/JSON Schema输出约束</td></tr>
+<tr><td>RAG</td><td>72%</td><td>加载→切分→Embedding→Chroma→检索→拼接Prompt</td></tr>
+<tr><td>Chroma向量库</td><td>48%</td><td>建库/插入/相似度检索TopK/持久化</td></tr>
+<tr><td>LangChain</td><td>58%</td><td>Loader/Splitter/Embedding/Retriever/Chain/Tool</td></tr>
+<tr><td>AI编程工具</td><td>38%</td><td>Cursor Composer/@file/报错贴栈/.cursorrules</td></tr>
+</table>
+</div>
+
+<h3>P1 重要（W9-16）</h3>
+<div class="card">
+<table>
+<colgroup><col style="width:25%"><col style="width:15%"><col style="width:60%"></colgroup>
+<tr><th>技能</th><th>频率</th><th>学习目标</th></tr>
+<tr><td>LangGraph</td><td>18%</td><td>StateGraph/节点/条件分支/人工确认/Checkpointer</td></tr>
+<tr><td>Dify</td><td>42%</td><td>知识库/工作流/自定义工具/API发布</td></tr>
+<tr><td>FastAPI</td><td>30%</td><td>路由/Pydantic模型/CORS/WebSocket</td></tr>
+<tr><td>Streamlit</td><td>—</td><td>多页面/表单/表格/Plotly图表/状态管理</td></tr>
+<tr><td>PostgreSQL</td><td>32%</td><td>建表/SQLAlchemy ORM/Alembic/CRUD/JOIN</td></tr>
+<tr><td>全栈整合</td><td>35%</td><td>前端调后端→Agent→落库→渲染闭环</td></tr>
+</table>
+</div>
+
+<h3>P2 选学（W17-24穿插）</h3>
+<div class="card">
+<table>
+<colgroup><col style="width:25%"><col style="width:15%"><col style="width:60%"></colgroup>
+<tr><th>技能</th><th>频率</th><th>说明</th></tr>
+<tr><td>Coze</td><td>28%</td><td>Dify补充，会一个即可</td></tr>
+<tr><td>Qdrant</td><td>—</td><td>Chroma生产化升级，了解迁移</td></tr>
+<tr><td>Docker Compose</td><td>20%</td><td>一键起PG/Redis/MinIO/Chroma/Streamlit</td></tr>
+<tr><td>前端基础</td><td>12%</td><td>看懂简单HTML/Vue组件</td></tr>
+<tr><td>LangSmith</td><td>—</td><td>LLM调用链追踪，面试加分</td></tr>
+</table>
+</div>
+
+<h3>砍掉不学</h3>
+<div class="card" style="border-left:4px solid var(--red);">
+<table>
+<colgroup><col style="width:40%"><col style="width:60%"></colgroup>
+<tr><th>砍掉技能</th><th>理由</th></tr>
+<tr><td>模型微调/PyTorch/LoRA</td><td>大专岗0%，中小公司完全不碰，用API就行</td></tr>
+<tr><td>算法/数据结构/LeetCode</td><td>中小公司不考，浪费时间</td></tr>
+<tr><td>K8s/微服务/CI-CD深度</td><td>20%提及率，会docker-compose即可</td></tr>
+<tr><td>LangGraph深度优化</td><td>18%提及率，跑通状态机即可</td></tr>
+<tr><td>React/Vue从零开发</td><td>Streamlit够用，JD只要求"看得懂"</td></tr>
+<tr><td>AutoGen/MetaGPT多Agent协作</td><td>8%提及率，非核心</td></tr>
+</table>
+</div>
+</section>
+
+<!-- ===== Section 4 ===== -->
+<section id="s4">
+<h2>4. 全流程项目方案</h2>
+
+<h3>项目定位与差异化卖点</h3>
+<div class="card">
+<p><strong>项目名称：</strong>跨境电商AI全链路助手（Cross-border E-commerce AI Copilot）</p>
+<p><strong>设计原则：</strong>业务懂行者做AI——不卷模型层、不卷算法，卷"懂跨境业务的AI工程化落地"。</p>
+<table>
+<colgroup><col style="width:50%"><col style="width:50%"></colgroup>
+<tr><th>普通AI项目</th><th>本项目</th></tr>
+<tr><td>套壳ChatGPT（一个聊天框）</td><td>多Agent编排：4个Agent+主路由+状态机+人工节点</td></tr>
+<tr><td>单功能demo</td><td>全链路：采集→分析→多模态生成→异步视频→运营闭环</td></tr>
+<tr><td>跑在notebook</td><td>工程化：FastAPI+Docker+PG+异步任务+云部署+LangSmith</td></tr>
+<tr><td>通用场景（智能客服）</td><td>垂直Know-how：亚马逊合规/Listing规则/BSR逻辑</td></tr>
+<tr><td>只用一种模型</td><td>多模型路由：DeepSeek/Qwen-VL/通义万相/Seedance/CosyVoice</td></tr>
+</table>
+</div>
+
+<h3>系统架构图</h3>
+<div class="mermaid">
+flowchart TB
+    subgraph L1["接入层"]
+        UI["Streamlit Web UI"]
+        API["FastAPI REST API"]
+    end
+    subgraph L2["Agent编排层 LangGraph"]
+        ROUTER["主路由Agent 意图识别+任务分发"]
+        A1["选品Agent"]
+        A2["图文Agent"]
+        A3["视频Agent"]
+        A4["运营Agent"]
+    end
+    subgraph L3["能力层 Tools/Dify"]
+        T1["SP-API/爬虫"]
+        T2["DeepSeek/Qwen"]
+        T3["通义万相图片"]
+        T4["即梦Seedance视频"]
+        T5["CosyVoice配音"]
+        DIFY["Dify工作流 评论分析/客服FAQ"]
+    end
+    subgraph L4["数据层"]
+        PG[("PostgreSQL")]
+        VDB[("Chroma-Qdrant")]
+        REDIS[("Redis")]
+        MINIO[("MinIO")]
+    end
+    UI --> API
+    API --> ROUTER
+    ROUTER --> A1 & A2 & A3 & A4
+    A1 & A2 & A3 & A4 --> T1 & T2 & T3 & T4 & T5 & DIFY
+    A1 & A2 & A3 & A4 --> PG & VDB & REDIS & MINIO
+</div>
+
+<h3>四大模块功能点</h3>
+<div class="phase-grid">
+  <div class="phase-card">
+    <div class="ph-week">P1 · W1-6 · ~2350行</div>
+    <div class="ph-title">选品模块</div>
+    <div class="ph-desc">BSR榜单抓取 · 竞品详情采集 · 评论聚类痛点挖掘 · 利基判断Agent · RAG选品知识库 · 报告生成</div>
+  </div>
+  <div class="phase-card">
+    <div class="ph-week">P2 · W7-12 · ~1800行</div>
+    <div class="ph-title">图文模块</div>
+    <div class="ph-desc">Listing标题/五点/A+ · 多语言版本 · 通义万相主图/场景图 · Qwen-VL合规审核 · A+图文混排</div>
+  </div>
+  <div class="phase-card">
+    <div class="ph-week">P3 · W13-18 · ~2050行</div>
+    <div class="ph-title">视频模块</div>
+    <div class="ph-desc">脚本分镜 · 即梦Seedance片段 · CosyVoice配音 · faster-whisper字幕 · FFmpeg合成 · Celery异步 · 三级降级</div>
+  </div>
+  <div class="phase-card">
+    <div class="ph-week">P4 · W19-24 · ~1850行</div>
+    <div class="ph-title">运营模块</div>
+    <div class="ph-desc">Dify评论情感分析 · 差评回复草稿 · 广告文案 · 客服FAQ RAG · 数据看板 · 主路由Agent整合 · 用户认证</div>
+  </div>
+</div>
+
+<h3>技术栈清单（精确到版本）</h3>
+<div class="card">
+<table>
+<colgroup><col style="width:25%"><col style="width:45%"><col style="width:30%"></colgroup>
+<tr><th>类别</th><th>选型</th><th>版本</th></tr>
+<tr><td>主语言</td><td>Python</td><td>3.11.x</td></tr>
+<tr><td>LLM框架</td><td>LangChain</td><td>0.2.x</td></tr>
+<tr><td>Agent编排</td><td>LangGraph</td><td>0.1.x</td></tr>
+<tr><td>Web后端</td><td>FastAPI</td><td>0.110.x</td></tr>
+<tr><td>前端MVP</td><td>Streamlit</td><td>1.34.x</td></tr>
+<tr><td>LLM主选</td><td>DeepSeek-V3/R1</td><td>—</td></tr>
+<tr><td>多模态</td><td>Qwen-VL-Max</td><td>—</td></tr>
+<tr><td>图片生成</td><td>通义万相 wanx2.1</td><td>—</td></tr>
+<tr><td>视频生成</td><td>即梦Seedance（主）+ 可灵（备）</td><td>—</td></tr>
+<tr><td>配音TTS</td><td>CosyVoice 2</td><td>—</td></tr>
+<tr><td>字幕ASR</td><td>faster-whisper</td><td>—</td></tr>
+<tr><td>视频合成</td><td>FFmpeg + MoviePy</td><td>—</td></tr>
+<tr><td>关系库</td><td>PostgreSQL</td><td>16</td></tr>
+<tr><td>向量库</td><td>Chroma→Qdrant</td><td>—</td></tr>
+<tr><td>缓存/队列</td><td>Redis + Celery</td><td>7</td></tr>
+<tr><td>对象存储</td><td>MinIO→阿里云OSS</td><td>—</td></tr>
+<tr><td>部署</td><td>Docker Compose</td><td>—</td></tr>
+<tr><td>追踪</td><td>LangSmith</td><td>免费层</td></tr>
+<tr><td>低代码</td><td>Dify</td><td>—</td></tr>
+<tr><td>AI编码</td><td>Cursor + Copilot</td><td>—</td></tr>
+</table>
+</div>
+
+<h3>代码量估算</h3>
+<table>
+<colgroup><col style="width:50%"><col style="width:50%"></colgroup>
+<tr><th>模块</th><th>代码量</th></tr>
+<tr><td>选品模块</td><td>~2,350行</td></tr>
+<tr><td>图文生成模块</td><td>~1,800行</td></tr>
+<tr><td>视频生成模块</td><td>~2,050行</td></tr>
+<tr><td>运营模块</td><td>~1,850行</td></tr>
+<tr><td>基础设施/胶水/前端</td><td>~2,700行</td></tr>
+<tr><td><strong>总计</strong></td><td><strong>~10,750行</strong></td></tr>
+</table>
+
+<h3>低代码 vs 手写代码边界</h3>
+<div class="card">
+<table>
+<colgroup><col style="width:35%"><col style="width:25%"><col style="width:40%"></colgroup>
+<tr><th>部分</th><th>实现方式</th><th>理由</th></tr>
+<tr><td>主路由+4业务Agent编排</td><td><strong>手写LangGraph</strong></td><td>核心链路，面试要讲状态机</td></tr>
+<tr><td>RAG知识库</td><td><strong>手写LangChain+Chroma</strong></td><td>72%频率要求，必须手写</td></tr>
+<tr><td>评论情感分析/客服FAQ</td><td>Dify工作流</td><td>模板化拖拽快</td></tr>
+<tr><td>数据采集</td><td>手写Python</td><td>反爬/限流/清洗</td></tr>
+<tr><td>视频流水线</td><td>手写Python编排</td><td>异步/FFmpeg/重试</td></tr>
+<tr><td>前端</td><td>Streamlit</td><td>一个人做不完React</td></tr>
+</table>
+<p style="font-size:13px;color:var(--text-light)">原则：面试要被追问的核心链路手写；模板化一次性流程用Dify快速搭。</p>
+</div>
+
+<h3>视频模块选型结论</h3>
+<div class="card">
+<table>
+<colgroup><col style="width:25%"><col style="width:20%"><col style="width:20%"><col style="width:35%"></colgroup>
+<tr><th>方案</th><th>单秒成本</th><th>易用性</th><th>结论</th></tr>
+<tr><td>即梦Seedance(字节)</td><td>¥0.5-1/秒</td><td>★★★★★</td><td><strong>主选</strong> 国内API直连中文Prompt</td></tr>
+<tr><td>可灵AI(快手)</td><td>¥1-2/秒</td><td>★★★★</td><td>备选/对比</td></tr>
+<tr><td>Runway Gen-3</td><td>$0.5/秒</td><td>★★★</td><td>仅1条demo对比</td></tr>
+</table>
+<p style="font-size:13px;color:var(--text-light)">不本地部署视频模型（需24G+显存），API成本可控（15s视频≈¥10-15）。</p>
+</div>
+</section>
+
+<!-- ===== Section 5 ===== -->
+<section id="s5">
+<h2>5. 24周逐周计划</h2>
+<p class="subtitle">每周31h（学习+项目+求职），里程碑行橙色高亮</p>
+
+<table>
+<colgroup><col style="width:8%"><col style="width:22%"><col style="width:35%"><col style="width:25%"><col style="width:10%"></colgroup>
+<tr><th>周次</th><th>学习目标</th><th>项目任务</th><th>求职准备</th><th>时间分配</th></tr>
+
+<tr><td>W1<br>9.15-9.21</td><td>Python基础+Cursor环境+.cursorrules</td><td>GitHub建仓+脚手架+Docker Compose起基础服务</td><td>Boss直聘收藏20岗位+JD关键词</td><td>学14+项12+求5</td></tr>
+<tr><td>W2<br>9.22-9.28</td><td>DeepSeek API+流式+多轮对话</td><td>CLI聊天机器人+LangSmith接入+API Key充值</td><td>收藏JD累计35+记录公司名单</td><td>学12+项14+求5</td></tr>
+<tr><td>W3<br>9.29-10.5</td><td>Prompt模板+Function Calling+爬虫基础</td><td>标题生成脚本+20个ASIN样本+竞品详情抓取</td><td>整理薪资分布+写简历技能清单</td><td>学12+项15+求4</td></tr>
+<tr class="milestone"><td>W4<br>10.6-10.12</td><td colspan="3">【M1】：Python+AI工具上手，跑通LLM调用。CLI机器人v1.0+差评聚类脚本+简历技能清单初稿</td><td>学10+项15+求6</td></tr>
+<tr><td>W5<br>10.13-10.19</td><td>RAG全流程+切分策略+Embedding</td><td>PDF文档切分+转向量+存入Chroma建库</td><td>写项目经历框架+提炼3个bullet</td><td>学14+项13+求4</td></tr>
+<tr><td>W6<br>10.20-10.26</td><td>LangChain组件+LangGraph StateGraph+Streamlit</td><td>LangChain重写RAG+选品Agent状态机+Streamlit首页+<strong>Demo1</strong></td><td>完善简历+整理RAG面试题</td><td>学10+项17+求4</td></tr>
+
+<tr><td>W7<br>10.27-11.2</td><td>Prompt进阶+多语言本地化+Jinja2</td><td>Listing标题/五点/A+文案+多语言+10+模板</td><td>简历补Prompt实战+写博客1</td><td>学8+项19+求4</td></tr>
+<tr class="milestone"><td>W8<br>11.3-11.9</td><td colspan="3">【M2】：选品RAG知识库MVP。RAG问答准确率>80%+PostgreSQL落库+3分钟Demo视频+简历v1.0+博客1发布</td><td>学8+项18+求5</td></tr>
+<tr><td>W9<br>11.10-11.16</td><td>通义万相API+图片Prompt+成本控制</td><td>主图生成+图生图换背景+MinIO存图</td><td>简历加多模态API+研究图片生成JD</td><td>学10+项17+求4</td></tr>
+<tr><td>W10<br>11.17-11.23</td><td>Qwen-VL多模态+亚马逊合规+Agent编排</td><td>合规审核+A+图文混排+选品→Listing串联+20模板</td><td>写博客2+整理多模态面试题</td><td>学8+项19+求4</td></tr>
+<tr><td>W11<br>11.24-11.30</td><td>Streamlit多页面+前后端联调+FastAPI路由</td><td>图文前端页面+FastAPI封装接口+联调bug修复</td><td>简历补FastAPI/Streamlit+架构话术</td><td>学8+项19+求4</td></tr>
+<tr class="milestone"><td>W12<br>12.1-12.7</td><td colspan="3">【M3】：图文生成模块完成。<strong>Demo2：ASIN→Listing文案+5张图</strong>+30+Prompt模板+累计5500行+简历v2.0+博客3篇</td><td>学6+项20+求5</td></tr>
+
+<tr><td>W13<br>12.8-12.14</td><td>分镜结构+脚本Prompt+asyncio异步</td><td>脚本生成器+结构化分镜JSON</td><td>简历加多模态视频+研究视频JD</td><td>学10+项17+求4</td></tr>
+<tr><td>W14<br>12.15-12.21</td><td>即梦Seedance API+Celery任务队列+轮询</td><td>分镜→视频片段+Celery异步+失败重试</td><td>写博客4+整理异步面试题</td><td>学8+项19+求4</td></tr>
+<tr><td>W15<br>12.22-12.28</td><td>CosyVoice TTS+faster-whisper ASR+SRT格式</td><td>配音生成+字幕识别+时间轴对齐</td><td>简历加TTS/ASR+技术选型面试题</td><td>学8+项19+求4</td></tr>
+<tr class="milestone"><td>W16<br>12.29-1.4</td><td colspan="3">【M4】：视频生成模块完成。FFmpeg合成+BGM+字幕烧录+三级降级(Seedance→可灵→图片轮播)+<strong>Demo3</strong>+累计8000行</td><td>学6+项20+求5</td></tr>
+
+<tr><td>W17<br>1.5-1.11</td><td>面试题第一轮整理+STAR法则</td><td>项目加小优化+代码注释补全</td><td>20道面试题+答案要点+3分钟自我介绍</td><td>学6+项10+求15</td></tr>
+<tr><td>W18<br>1.12-1.18</td><td>薄弱知识巩固+HR问题+学历/转行话术</td><td>加选做功能+准备10分钟深度话术</td><td>HR面10题+第一次模拟面试+录像复盘</td><td>学4+项8+求19</td></tr>
+<tr><td>W19<br>1.19-1.25</td><td>Dify工作流编排+自定义工具+API发布</td><td>Dify评论情感分析+客服FAQ RAG+差评回复+广告文案</td><td>简历补Dify+写博客5</td><td>学8+项18+求5</td></tr>
+<tr class="milestone"><td>W20<br>1.26-2.1</td><td colspan="3">【M5】：求职准备完成。主路由Agent串联4模块+数据看板+简历终版+作品集四件套+面试题+第一次模拟面试</td><td>学4+项12+求15</td></tr>
+
+<tr><td>W21<br>2.2-2.8</td><td>Docker Compose上云+环境变量+HTTPS</td><td>云服务器部署+OSS切换+域名+README完善+3分钟讲解视频</td><td>第一批投递每天10-15家+打招呼话术+跟进</td><td>学2+项10+求19</td></tr>
+<tr><td>W22<br>2.9-2.15</td><td>面试反馈查漏补缺+面试风格差异</td><td>补充项目细节+修复暴露bug+2个小优化</td><td>累计投递80-100家+每天复盘+第二次模拟面试</td><td>学3+项5+求23</td></tr>
+<tr><td>W23<br>2.16-2.22</td><td>谈薪策略+成都薪资行情</td><td>准备"入职后做什么"+项目拓展方向</td><td>终面跟进+谈薪话术(目标12K底线10K)+对比offer+第三次模拟</td><td>学2+项4+求25</td></tr>
+<tr class="milestone"><td>W24<br>2.23-3.1</td><td colspan="3">【M6】：全流程整合部署，开始投递。在线产品Demo+GitHub开源+≥1个offer或启动Plan B+24周总结</td><td>学2+项4+求25</td></tr>
+</table>
+</section>
+
+<!-- ===== Section 6 ===== -->
+<section id="s6">
+<h2>6. 6个里程碑详情</h2>
+
+<div class="card">
+<h3>M1（W4）：Python+AI工具上手，跑通LLM调用</h3>
+<p><strong>目标：</strong>从"只会Java CRUD"切换到"能用Python调AI API做东西"</p>
+<p><strong>产出：</strong>CLI聊天机器人v1.0 + GitHub第一个demo + Cursor熟练度提升</p>
+<p><strong>自检：</strong>☐独立写100行Python ☐调LLM API处理返回 ☐Cursor 1小时生成200行可跑代码 ☐理解消息结构 ☐知道RAG/Agent概念</p>
+</div>
+
+<div class="card">
+<h3>M2（W8）：选品RAG知识库MVP</h3>
+<p><strong>目标：</strong>完成第一个有业务价值的AI应用Demo</p>
+<p><strong>产出：</strong>RAG知识库问答系统 + 3分钟Demo视频 + 简历v1.0 + 博客第1篇</p>
+<p><strong>自检：</strong>☐独立完成RAG全流程 ☐问答准确率>80% ☐LangChain和手写两种方式实现 ☐能讲清RAG解决什么 ☐README能让别人跑起来</p>
+</div>
+
+<div class="card">
+<h3>M3（W12）：图文生成模块完成</h3>
+<p><strong>目标：</strong>从单点功能升级到多模态图文生成</p>
+<p><strong>产出：</strong>Demo2（ASIN→Listing文案+5张图）+ 30+Prompt模板 + 简历v2.0 + 博客3篇</p>
+<p><strong>自检：</strong>☐图片生成+图生图跑通 ☐多模态合规审核 ☐选品→Listing一键串联 ☐累计代码~5500行</p>
+</div>
+
+<div class="card">
+<h3>M4（W16）：视频生成模块完成</h3>
+<p><strong>目标：</strong>攻克最复杂的视频生成流水线</p>
+<p><strong>产出：</strong>Demo3（产品图→15s带字幕配音视频）+ 三级降级方案 + 累计代码~8000行</p>
+<p><strong>自检：</strong>☐脚本→片段→配音→字幕→合成全跑通 ☐Celery任务队列 ☐失败降级到可灵/图片轮播 ☐能讲清异步调度和降级设计</p>
+</div>
+
+<div class="card">
+<h3>M5（W20）：求职准备完成</h3>
+<p><strong>目标：</strong>所有求职材料就绪，随时可开投</p>
+<p><strong>产出：</strong>简历终版 + 作品集四件套 + 20道面试题答案 + 项目讲解话术 + 模拟面试复盘</p>
+<p><strong>自检：</strong>☐简历经2轮修改 ☐作品集四件套齐全 ☐脱稿讲3分钟项目 ☐≥2次模拟面试 ☐学历/转行有标准回答</p>
+</div>
+
+<div class="card">
+<h3>M6（W24）：全流程整合部署，开始投递</h3>
+<p><strong>目标：</strong>拿到目标薪资offer或启动Plan B</p>
+<p><strong>产出：</strong>在线产品Demo + GitHub开源仓库 + ≥1个offer + 面试复盘记录</p>
+<p><strong>自检：</strong>☐累计投递100家+ ☐完成5次+真实面试 ☐≥1个offer ☐谈薪达预期 ☐没offer则Plan B在推进</p>
+</div>
+</section>
+
+<!-- ===== Section 7 ===== -->
+<section id="s7">
+<h2>7. 求职准备全攻略</h2>
+
+<h3>成都TOP20目标公司清单</h3>
+<table>
+<colgroup><col style="width:5%"><col style="width:22%"><col style="width:20%"><col style="width:11%"><col style="width:7%"><col style="width:9%"><col style="width:26%"></colgroup>
+<tr><th>#</th><th>公司</th><th>岗位</th><th>薪资</th><th>学历</th><th>风险</th><th>匹配理由</th></tr>
+<tr><td>1</td><td>成都易拉冠网络科技</td><td>AI应用工程师/技术开发专家</td><td>15-30K</td><td>大专</td><td><span class="badge badge-green">低</span></td><td>大专+Cursor/Claude Code+全栈+0-20人</td></tr>
+<tr><td>2</td><td>四川天府讯动人工智能</td><td>智能开发AI软件工程师</td><td>10-15K</td><td>大专</td><td><span class="badge badge-green">低</span></td><td>大专+Java/Python+MySQL+AI编程助手</td></tr>
+<tr><td>3</td><td>成都启奔科技</td><td>人工智能开发工程师</td><td>10-15K</td><td>大专</td><td><span class="badge badge-green">低</span></td><td>大专+LangChain+AutoGPT+天使轮</td></tr>
+<tr><td>4</td><td>成都慕林创新科技</td><td>AI应用工程师</td><td>10-15K</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>Python+FastAPI+LangGraph+Dify+0-20人</td></tr>
+<tr><td>5</td><td>成都福客人工智能科技</td><td>FDE AI应用工程师</td><td>9-14K·14薪</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>AI Workflow+Vibe Coding+客户交付</td></tr>
+<tr><td>6</td><td>北京瑞达天润(成都)</td><td>大模型应用开发(Agent方向)</td><td>8-13K</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>Agent开发+1-3年+中小公司成都办公</td></tr>
+<tr><td>7</td><td>成都柚知柿科技</td><td>AI工作流开发搭建</td><td>面议</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>电商+0-20人+AI工作流</td></tr>
+<tr><td>8</td><td>四川可灵人工智能</td><td>智能体搭建师</td><td>面议</td><td>大专</td><td><span class="badge badge-green">低</span></td><td>大专+Dify/Coze+2025年成立</td></tr>
+<tr><td>9</td><td>四川星峰景晨科技</td><td>RAG开发工程师</td><td>7-10K</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>RAG系统+向量检索+无需经验</td></tr>
+<tr><td>10</td><td>智维平科技</td><td>AI应用工程师</td><td>11-16K</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>智能体/RAG/知识库+未融资</td></tr>
+<tr><td>11</td><td>成都餐谋团企业管理</td><td>AI应用工程师</td><td>12-17K</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>经验不限+经营数据聚合可视化</td></tr>
+<tr><td>12</td><td>四川青禾物业服务</td><td>AI应用专员</td><td>8-15K</td><td>大专</td><td><span class="badge badge-green">低</span></td><td>大专+AI办公工具+智能客服</td></tr>
+<tr><td>13</td><td>四川数聚智造科技</td><td>AI全栈工程师</td><td>10-20K</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>应届可投+AI全栈</td></tr>
+<tr><td>14</td><td>成都梦成解忧文化传播</td><td>大模型应用开发(全栈)</td><td>10-13K</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>Python+Flask/FastAPI+前后端</td></tr>
+<tr><td>15</td><td>四川空间坐标信息科技</td><td>AI应用工程师</td><td>6-8K</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>Python+FastAPI+DeepSeek+Milvus</td></tr>
+<tr><td>16</td><td>胖虎科技</td><td>AI大模型应用开发</td><td>未公开</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>Golang/Java/Python+AI Agent</td></tr>
+<tr><td>17</td><td>成都易训</td><td>AI应用开发(AIGC/长文档)</td><td>15-22K</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>AIGC+长文档处理</td></tr>
+<tr><td>18</td><td>成都研墨未来科技</td><td>Dify智能体搭建(实习)</td><td>面议</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>Dify+实习+高新区（保底跳板）</td></tr>
+<tr><td>19</td><td>四川南实卓育</td><td>AI实习生</td><td>6-12K</td><td>学历不限</td><td><span class="badge badge-green">低</span></td><td>学历不限+AI教育+AIGC</td></tr>
+<tr><td>20</td><td>陕西汉唐数标(成都金牛)</td><td>大模型评测与应用</td><td>7-9K</td><td>本科</td><td><span class="badge badge-green">低</span></td><td>LLM评测+Java/Python</td></tr>
+</table>
+
+<h3>简历写法</h3>
+<div class="card">
+<h4>学历处理</h4>
+<p>教育经历只写"大专 | 计算机应用技术 | 20XX-20XX"，不写"统招"、不写学校名。不写中专、不写厨师、不写"全日制"。</p>
+<h4>跨境电商经验包装</h4>
+<table>
+<colgroup><col style="width:40%"><col style="width:60%"></colgroup>
+<tr><th>原始经历</th><th>简历写法</th></tr>
+<tr><td>选品开发</td><td>"负责跨境电商产品选型与市场分析，完成XX个产品从调研到上架全流程"</td></tr>
+<tr><td>运营优化</td><td>"主导Listing优化与运营数据分析，熟悉AI工具在电商场景落地需求"</td></tr>
+<tr><td>供应链</td><td>"对接供应商与供应链流程，具备B端业务系统需求理解能力"</td></tr>
+<tr><td>AI提效</td><td>"主动探索AI工具在选品/运营场景应用，独立开发AI辅助工具提升效率30%+"</td></tr>
+</table>
+<h4>技能清单</h4>
+<pre style="background:#1a202c;color:#e2e8f0;padding:16px;border-radius:8px;font-size:12px;overflow-x:auto;">AI应用开发：LangChain/LangGraph多Agent编排 + RAG + Dify低代码
+编程语言：Python（熟练）、Java（了解）
+开发工具：Cursor、GitHub Copilot（日常主力，自然语言生成代码）
+LLM应用：DeepSeek/Qwen API、Prompt Engineering、Function Calling、多模态API
+数据存储：PostgreSQL(SQLAlchemy)、Chroma/Qdrant、Redis、MinIO
+后端：FastAPI（REST+WebSocket+Celery异步队列）
+前端：Streamlit
+部署：Docker Compose、云服务器、LangSmith</pre>
+</div>
+
+<h3>20道面试题+答题要点</h3>
+
+<details><summary>1. 什么是RAG？为什么需要RAG？</summary><div class="details-body">检索增强生成，先从知识库检索相关文档，再和问题一起给大模型生成回答。解决大模型知识过时、不知道私有数据、幻觉问题。</div></details>
+
+<details><summary>2. RAG完整流程？怎么优化效果？</summary><div class="details-body">加载→切分→Embedding→向量库→问题向量化→相似度检索TopK→拼接Prompt→生成。优化：调chunk_size(试过512好于256)、加overlap、加Rerank、改进Prompt。</div></details>
+
+<details><summary>3. 什么是Agent？和Chatbot区别？</summary><div class="details-body">Agent能自主调用工具、根据观察决定下一步。Chatbot只能对话，Agent能做事。项目里用LangGraph StateGraph做主路由+4业务Agent。</div></details>
+
+<details><summary>4. LangChain和Dify怎么选？</summary><div class="details-body">LangChain是代码框架，灵活但慢，适合核心编排；Dify低代码拖拽快，适合模板化流程。核心Agent编排手写LangGraph，评论分析/客服FAQ用Dify。</div></details>
+
+<details><summary>5. 大模型API调用注意什么？</summary><div class="details-body">①成本控制(token计费) ②超时重试 ③流式输出 ④错误处理 ⑤API Key安全 ⑥LangSmith追踪调用链。</div></details>
+
+<details><summary>6. 向量数据库为什么用？Chroma和Qdrant区别？</summary><div class="details-body">存文本向量支持相似度检索，语义相近向量距离近。Chroma轻量嵌入式适合MVP，Qdrant性能好适合生产，项目Chroma→Qdrant升级。</div></details>
+
+<details><summary>7. 介绍一下你的项目？</summary><div class="details-body">3分钟话术：跨境电商AI全链路助手，4层架构，4大Agent，多模型路由，业务Know-how沉淀。从选品到上架打通全流程。</div></details>
+
+<details><summary>8. 项目里RAG效果怎么评估？</summary><div class="details-body">用20个常见测试问题人工评估，准确率约80%。chunk试过256/512/1024，512最好。加了引用来源标注。</div></details>
+
+<details><summary>9. 项目里最大困难？怎么解决？</summary><div class="details-body">视频生成异步调度——Seedance耗时长需Celery队列且可能失败。做了三级降级：Seedance→可灵→图片轮播(Ken Burns)，配置切换。</div></details>
+
+<details><summary>10. Agent工作流怎么设计的？</summary><div class="details-body">LangGraph StateGraph，主路由Agent做意图识别，分发到选品/图文/视频/运营Agent，用Checkpointer维护状态，有人工确认节点。</div></details>
+
+<details><summary>11. 爬虫被封怎么办？</summary><div class="details-body">控请求频率+UA轮换+延时+代理IP。MVP阶段用样本CSV+SP-API沙箱，爬虫作为能力点写在简历。</div></details>
+
+<details><summary>12. 数据库怎么设计的？</summary><div class="details-body">PostgreSQL三张核心表：products(ASIN/标题/价格/评分)、tasks(任务状态/类型)、generation_records(生成记录/模型/成本)。SQLAlchemy ORM。</div></details>
+
+<details><summary>13. 你用Cursor怎么开发的？</summary><div class="details-body">先写Pydantic契约再让Cursor生成实现，一次一个文件，报错贴完整stack trace，用.cursorrules固化规范。约70%代码AI生成，我负责设计和调优业务逻辑。</div></details>
+
+<details><summary>14. 再做一次怎么改进？</summary><div class="details-body">①加用户系统权限 ②加1688/速卖通数据源 ③RAG加Rerank ④Qdrant生产化 ⑤加更多视频模板。</div></details>
+
+<details><summary>15. AI在跨境电商还有哪些落地场景？</summary><div class="details-body">客服自动回复、广告优化、库存预测、评论分析、图片生成、物流异常预警。结合经验讲2-3个最落地的。</div></details>
+
+<details><summary>16. 你怎么理解AI应用工程师？</summary><div class="details-body">不是训练模型的，是用大模型解决业务问题。核心：理解业务需求→选AI技术方案→快速开发落地→持续优化。</div></details>
+
+<details><summary>17. 怎么看Prompt Engineering？</summary><div class="details-body">Prompt是和大模型的接口。核心：角色设定+明确要求+Few-shot示例+输出格式约束+迭代优化。沉淀了30+行业模板。</div></details>
+
+<details><summary>18. 为什么从跨境电商转行做AI开发？</summary><div class="details-body">做跨境产品开发时发现选品分析/文案整理很耗时间，试用AI工具效果好，就深入学怎么做成工具。越学越觉得AI应用开发是方向，且有业务理解优势。这个项目就是工作中发现痛点后自己做的解决方案。</div></details>
+
+<details><summary>19. 你什么学历？学什么的？</summary><div class="details-body">我是大专学历，计算机相关专业。之前对跨境电商感兴趣先入行做产品开发，但一直没放下技术，这半年系统自学Python和AI应用开发，做了完整项目。我知道学历是门槛，但优势是既有业务理解又能用AI工具快速落地。</div></details>
+
+<details><summary>20. 期望薪资多少？</summary><div class="details-body">了解成都这个岗位行情10-15K，结合项目经验和业务理解，期望12K左右。当然也看成长空间和团队。</div></details>
+
+<h3>投递策略</h3>
+<div class="card">
+<table>
+<colgroup><col style="width:25%"><col style="width:75%"></colgroup>
+<tr><th>维度</th><th>策略</th></tr>
+<tr><td>投什么公司</td><td>先投TOP20清单（成都低风险），再扩到外地远程/项目制</td></tr>
+<tr><td>什么时间投</td><td>周二/三/四 上午9:30-10:30 或 下午14:00-15:00</td></tr>
+<tr><td>每天投多少</td><td>10-15家，不海投，每家看JD再打招呼</td></tr>
+<tr><td>怎么跟进</td><td>投完2天没回复→主动跟进；5天没回复→放弃换下一家</td></tr>
+<tr><td>打招呼话术</td><td>"您好，我看到贵司在招AI应用工程师，我做了一个跨境电商AI全链路助手项目（附GitHub），熟悉RAG/Agent/LangChain开发，对跨境电商业务很熟，希望聊聊。"</td></tr>
+<tr><td>平台优先级</td><td>Boss直聘（主力）> 猎聘 > 智联/51job > 朋友圈/社群内推</td></tr>
+</table>
+</div>
+
+<h3>学历风险应对</h3>
+<div class="card">
+<p><strong>大概率不查学历的公司：</strong></p>
+<ul style="margin-left:20px;margin-bottom:12px;">
+<li>0-20人创业公司/工作室（连HR都没有）</li>
+<li>未融资/天使轮AI公司（招人急）</li>
+<li>传统行业+AI转型（不关心学历关心解决问题）</li>
+<li>远程/项目制/兼职（完全看产出）</li>
+<li>新成立1年内公司（还没HR体系）</li>
+</ul>
+<p><strong>原则：</strong>不撒谎（大专就是大专）、不主动提中专、把话题引向项目能力、小公司真卡学历那本来也不会要你。</p>
+</div>
+</section>
+
+<!-- ===== Section 8 ===== -->
+<section id="s8">
+<h2>8. 风险控制与Plan B</h2>
+
+<h3>进度落后调整方案</h3>
+<table>
+<colgroup><col style="width:25%"><col style="width:75%"></colgroup>
+<tr><th>落后情况</th><th>调整方案</th></tr>
+<tr><td>落后1周</td><td>周末多补4h，不砍功能赶进度</td></tr>
+<tr><td>落后2周</td><td>砍P2选学（Coze/Qdrant/前端），保P0+P1核心</td></tr>
+<tr><td>落后4周</td><td>视频模块降级为图片轮播+配音，砍运营看板，保选品+图文+RAG</td></tr>
+<tr><td>落后6周+</td><td>砍到保底三件套：RAG知识库 + Listing文案生成 + 1个图片API</td></tr>
+</table>
+
+<h3>视频模块降级方案</h3>
+<table>
+<colgroup><col style="width:35%"><col style="width:65%"></colgroup>
+<tr><th>情况</th><th>降级方案</th></tr>
+<tr><td>Seedance成本超预算</td><td>片段压到5s/段；开发期用静态图+Ken Burns效果模拟；只在最终demo调真实API</td></tr>
+<tr><td>视频效果不稳定</td><td>降级为图片轮播视频（FFmpeg把场景图拼视频+配音），面试讲成"成本/效果权衡"是加分项</td></tr>
+<tr><td>API限流/停服</td><td>抽象VideoGenerator接口，Seedance/可灵/图片轮播三选一配置切换</td></tr>
+</table>
+
+<h3>项目最低可接受版本（保底三件套）</h3>
+<div class="card" style="border-left:4px solid var(--green);">
+<p>即使最后时间不够，交出这三件套也覆盖JD 5大核心技能：</p>
+<ol style="margin-left:20px;">
+<li><strong>RAG知识库问答</strong>（Python+LangChain+Chroma）——证明RAG能力</li>
+<li><strong>Listing文案生成</strong>（Prompt+DeepSeek API+Streamlit）——证明Prompt+API能力</li>
+<li><strong>GitHub仓库+README+3分钟演示视频</strong>——证明可交付</li>
+</ol>
+<p style="margin-top:8px;">这三件套覆盖Python/RAG/Prompt/API/Streamlit五大技能点，足够过简历关。</p>
+</div>
+
+<h3>3月没找到工作的Plan B</h3>
+<table>
+<colgroup><col style="width:15%"><col style="width:30%"><col style="width:15%"><col style="width:40%"></colgroup>
+<tr><th>Plan</th><th>方向</th><th>薪资</th><th>说明</th></tr>
+<tr><td>B-1</td><td>AI训练师/数据标注过渡</td><td>3-8K</td><td>进AI行业接触团队，3-6个月内部转技术岗</td></tr>
+<tr><td>B-2</td><td>AI应用专员/AIGC生成师</td><td>6-12K</td><td>用跨境经验+AI工具做内容落地，半年后转技术</td></tr>
+<tr><td>B-3</td><td>远程兼职/项目制</td><td>按项目</td><td>Upwork/程序员客栈接Dify Bot/RAG小活，积累付费经验</td></tr>
+<tr><td>B-4</td><td>延长到6月再投</td><td>—</td><td>3-5月继续打磨项目，6-7月第二个招聘小高峰再投</td></tr>
+</table>
+</section>
+
+<!-- ===== Section 9 ===== -->
+<section id="s9">
+<h2>9. 每日时间安排模板</h2>
+
+<h3>工作日（周一至周五）：晚3小时</h3>
+<div class="card">
+<pre style="background:#f7fafc;padding:16px;border-radius:8px;font-size:13px;line-height:2;">19:30-20:00  回顾昨天+列今日任务清单（30min）
+20:00-21:00  学习：看教程/文档/视频做笔记（60min）
+21:00-21:15  休息（15min）
+21:15-22:30  项目：写代码/调bug/做功能（75min）
+22:30-23:00  记录今日完成+整理明日计划（30min）</pre>
+</div>
+
+<h3>周末（周六/周日）：每天8小时</h3>
+<div class="card">
+<pre style="background:#f7fafc;padding:16px;border-radius:8px;font-size:13px;line-height:2;">09:00-09:30  规划当天任务（30min）
+09:30-12:00  项目开发深度时间：做核心功能（2.5h）
+12:00-14:00  午饭+午休（2h）
+14:00-16:30  继续项目开发/学习（2.5h）
+16:30-17:00  休息（30min）
+17:00-18:30  求职准备：简历/面试题/作品集（1.5h）
+18:30-19:30  晚饭+休息（1h）
+19:30-21:00  复盘+整理笔记+写博客素材（1.5h）</pre>
+</div>
+
+<h3>典型周时间表示例（W6）</h3>
+<table>
+<colgroup><col style="width:12%"><col style="width:14.6%"><col style="width:14.6%"><col style="width:14.6%"><col style="width:14.6%"><col style="width:14.6%"><col style="width:14.6%"></colgroup>
+<tr><th>时间</th><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六/日</th></tr>
+<tr><td>上午</td><td>上班</td><td>上班</td><td>上班</td><td>上班</td><td>上班</td><td>项目：RAG/Agent</td></tr>
+<tr><td>下午</td><td>上班</td><td>上班</td><td>上班</td><td>上班</td><td>上班</td><td>项目/求职</td></tr>
+<tr><td>晚上</td><td>学习Chroma</td><td>学习检索</td><td>项目RAG联调</td><td>学习LangGraph</td><td>休息</td><td>复盘+下周计划</td></tr>
+</table>
+<p style="font-size:13px;color:var(--text-light);">周总计：学习~12h + 项目~15h + 求职~4h = 31h</p>
+</section>
+
+<!-- ===== Section 10 ===== -->
+<section id="s10">
+<h2>10. 立即行动清单</h2>
+
+<div class="card" style="border-left:4px solid var(--red);">
+<h4>今天（9月15日）</h4>
+<ul style="margin-left:20px;">
+<li>安装Python 3.11 + Cursor + Git + Docker Desktop</li>
+<li>GitHub建仓 crossborder-ai-copilot</li>
+<li>注册DeepSeek/通义万相/即梦Seedance API Key各充¥50</li>
+<li>Cursor里跑通第一个Hello World</li>
+</ul>
+</div>
+
+<div class="card" style="border-left:4px solid var(--accent);">
+<h4>本周内（9月21日前）</h4>
+<ul style="margin-left:20px;">
+<li>过完Python基础语法（函数/类/字典/列表推导）</li>
+<li>学会Cursor Chat和Composer，让它写3个小脚本</li>
+<li>Boss直聘搜"成都 AI应用工程师"，收藏20个岗位</li>
+<li>写出第一个调DeepSeek API的脚本</li>
+<li>GitHub仓库初始化+README骨架</li>
+</ul>
+</div>
+
+<div class="card" style="border-left:4px solid var(--green);">
+<h4>本周末（9月20-21日）</h4>
+<ul style="margin-left:20px;">
+<li>完成CLI聊天机器人v0.1（能多轮对话）</li>
+<li>录10秒GIF展示聊天机器人</li>
+<li>整理一份"我目前技能清单"</li>
+</ul>
+</div>
+</section>
+
+<!-- ===== Section 11 Appendix ===== -->
+<section id="s11">
+<h2>附录：100岗位明细</h2>
+
+<details>
+<summary>成都岗位（35个）— 点击展开</summary>
+<div class="details-body">
+<table class="appendix-table">
+<colgroup><col style="width:7%"><col style="width:18%"><col style="width:18%"><col style="width:10%"><col style="width:7%"><col style="width:8%"><col style="width:22%"><col style="width:10%"></colgroup>
+<tr><th>编号</th><th>公司</th><th>岗位</th><th>薪资</th><th>学历</th><th>风险</th><th>核心技能</th><th>规模</th></tr>
+<tr><td>CD-01</td><td>智维平科技</td><td>AI应用工程师</td><td>11-16K</td><td>本科</td><td>低</td><td>智能体/RAG/知识库</td><td>未融资</td></tr>
+<tr><td>CD-02</td><td>成都餐谋团</td><td>AI应用工程师</td><td>12-17K</td><td>本科</td><td>低</td><td>经营数据聚合可视化</td><td>中小</td></tr>
+<tr><td>CD-03</td><td>成都祥瑞福泽</td><td>AI agent应用工程师</td><td>15-25K</td><td>本科</td><td>低</td><td>Go/AI Agent/工具调用</td><td>中小</td></tr>
+<tr><td>CD-04</td><td>四川具身人形机器人</td><td>AI应用工程师(后端)</td><td>15-30K·13薪</td><td>本科</td><td>中</td><td>Agent Runtime/云边协同</td><td>创业</td></tr>
+<tr><td>CD-05</td><td>成都福客人工智能</td><td>FDE AI应用工程师</td><td>9-14K·14薪</td><td>本科</td><td>低</td><td>AI Workflow/Vibe Coding</td><td>中小</td></tr>
+<tr><td>CD-06</td><td>上海科慕生(成都)</td><td>AI应用工程师(Agent)</td><td>18-25K</td><td>本科</td><td>中</td><td>AI Agent/钉钉平台</td><td>中小</td></tr>
+<tr><td>CD-07</td><td>某成都互联网公司</td><td>资深AI Agent全栈</td><td>20-40K</td><td>本科</td><td>中</td><td>AI Agent全栈开发</td><td>中小</td></tr>
+<tr><td>CD-08</td><td>四川省文化大数据</td><td>AI大语言模型应用</td><td>12-20K</td><td>本科</td><td>中</td><td>Python/RAG/向量库</td><td>国企背景</td></tr>
+<tr><td>CD-09</td><td>四川恒湾科技(B轮)</td><td>AI应用开发工程师</td><td>15-20K</td><td>本科</td><td>中</td><td>Python/大模型应用</td><td>B轮100-200人</td></tr>
+<tr><td>CD-10</td><td>北京瑞达天润(成都)</td><td>大模型应用开发(Agent)</td><td>8-13K</td><td>本科</td><td>低</td><td>大模型应用/Agent</td><td>中小</td></tr>
+<tr><td>CD-11</td><td>立昇智能(立讯旗下)</td><td>AI Agent应用开发</td><td>15-30K·13薪</td><td>本科</td><td>中</td><td>LangChain/Dify/Coze/RAG</td><td>50-200人</td></tr>
+<tr><td>CD-12</td><td>四川空间坐标</td><td>AI应用工程师</td><td>6-8K</td><td>本科</td><td>低</td><td>FastAPI/DeepSeek/Milvus</td><td>测绘中小</td></tr>
+<tr><td>CD-13</td><td>四川易诚智讯</td><td>AI应用开发工程师</td><td>9-15K</td><td>本科</td><td>中</td><td>RAG/Milvus/LangGraph</td><td>政企中小</td></tr>
+<tr><td>CD-14</td><td>成都慕林创新</td><td>AI应用工程师</td><td>10-15K</td><td>本科</td><td>低</td><td>FastAPI/LangGraph/Dify/MCP</td><td>0-20人</td></tr>
+<tr><td>CD-15</td><td>成都超精密光学研究院</td><td>AI Agent开发</td><td>20-25K</td><td>本科</td><td>中</td><td>AI Agent/深度学习</td><td>研究院</td></tr>
+<tr><td>CD-16</td><td>四川伦天科技</td><td>软件工程师(大模型推理)</td><td>10-20K</td><td>本科</td><td>中</td><td>LLM推理/KVcache/batch</td><td>中小</td></tr>
+<tr><td>CD-17</td><td>陕西汉唐数标(成都)</td><td>大模型评测与应用</td><td>7-9K</td><td>本科</td><td>低</td><td>LLM评测/多轮对话/Java</td><td>中小</td></tr>
+<tr><td>CD-18</td><td>成都智疆创新</td><td>智能体开发</td><td>15-30K·13薪</td><td>本科</td><td>低</td><td>具身智能体/AgentOS</td><td>创业</td></tr>
+<tr><td>CD-19</td><td>迈格森(成都武侯)</td><td>AI工程师</td><td>15-25K·14薪</td><td>本科</td><td>中</td><td>深度学习/大模型算法</td><td>教育AI</td></tr>
+<tr><td>CD-20</td><td>成都易拉冠网络</td><td>AI应用工程师/专家</td><td>15-30K</td><td>大专</td><td>低</td><td>Cursor/Claude Code/全栈</td><td>0-20人</td></tr>
+<tr><td>CD-21</td><td>四川青禾物业</td><td>AI应用专员</td><td>8-15K</td><td>大专</td><td>低</td><td>AI办公工具/智能客服</td><td>物业小公司</td></tr>
+<tr><td>CD-22</td><td>四川天府讯动</td><td>智能开发AI软件工程师</td><td>10-15K</td><td>大专</td><td>低</td><td>Java/Python/MySQL/AI助手</td><td>0-20人</td></tr>
+<tr><td>CD-23</td><td>成都启奔科技</td><td>人工智能开发工程师</td><td>10-15K</td><td>大专</td><td>低</td><td>Python/Java/LangChain/AutoGPT</td><td>天使轮</td></tr>
+<tr><td>CD-24</td><td>成都柚知柿</td><td>AI工作流开发搭建</td><td>面议</td><td>本科</td><td>低</td><td>Java/Python/AI工作流</td><td>电商0-20人</td></tr>
+<tr><td>CD-25</td><td>四川创企科技</td><td>AI开发工程师</td><td>7-12K</td><td>本科</td><td>中</td><td>Coze/Dify/RAG/财报分析</td><td>金融科技</td></tr>
+<tr><td>CD-26</td><td>四川格瑞特</td><td>AI应用开发工程师</td><td>10-15K</td><td>本科</td><td>中</td><td>Dify集成/uni-app/知识问答</td><td>行业应用</td></tr>
+<tr><td>CD-27</td><td>四川可灵人工智能</td><td>智能体搭建师</td><td>面议</td><td>大专</td><td>低</td><td>智能体搭建/Dify/Coze</td><td>2025成立</td></tr>
+<tr><td>CD-28</td><td>四川我要去哪</td><td>AI全栈开发</td><td>10-14K</td><td>本科</td><td>中</td><td>AI全栈/后端</td><td>200-500人</td></tr>
+<tr><td>CD-29</td><td>四川数聚智造</td><td>AI全栈工程师</td><td>10-20K</td><td>本科</td><td>低</td><td>AI全栈/大数据</td><td>双流中小</td></tr>
+<tr><td>CD-30</td><td>四川星峰景晨</td><td>RAG开发工程师</td><td>7-10K</td><td>本科</td><td>低</td><td>RAG系统/向量检索/重排序</td><td><50人</td></tr>
+<tr><td>CD-31</td><td>胖虎科技</td><td>AI大模型应用开发</td><td>未公开</td><td>本科</td><td>低</td><td>Golang/Java/Python/Agent</td><td>中小</td></tr>
+<tr><td>CD-32</td><td>上海艾策通讯(成都)</td><td>AI应用研发(Java)</td><td>15-18K·13薪</td><td>本科</td><td>中</td><td>Java/AI应用开发</td><td>民营中小</td></tr>
+<tr><td>CD-33</td><td>成都易训</td><td>AI应用开发(AIGC/长文档)</td><td>15-22K</td><td>本科</td><td>低</td><td>AIGC/长文档处理</td><td>中小</td></tr>
+<tr><td>CD-34</td><td>星网智慧科技</td><td>AI应用开发工程师</td><td>未公开</td><td>本科</td><td>中</td><td>C#/Django/Python/MaaS</td><td>中小</td></tr>
+<tr><td>CD-35</td><td>某知名公司(成都)</td><td>AI应用开发(Agent)</td><td>15-30K·14薪</td><td>本科</td><td>中</td><td>AI Agent/大模型应用</td><td>中小</td></tr>
+</table>
+</div>
+</details>
+
+<details>
+<summary>外地/远程岗位（65个）— 点击展开</summary>
+<div class="details-body">
+<table class="appendix-table">
+<colgroup><col style="width:7%"><col style="width:20%"><col style="width:20%"><col style="width:10%"><col style="width:8%"><col style="width:7%"><col style="width:28%"></colgroup>
+<tr><th>编号</th><th>公司</th><th>岗位</th><th>城市</th><th>薪资</th><th>风险</th><th>核心技能</th></tr>
+<tr><td>EXT-01</td><td>大益同心</td><td>AI智能体开发(RAG)</td><td>北京</td><td>15-20K</td><td>低</td><td>LangChain/Dify/Coze/RAG</td></tr>
+<tr><td>EXT-02</td><td>北京优天下</td><td>大模型AI应用</td><td>北京</td><td>未公开</td><td>低</td><td>Python/LangChain/LlamaIndex/RAG</td></tr>
+<tr><td>EXT-03</td><td>正齐动力</td><td>大模型应用工程师</td><td>杭州</td><td>未公开</td><td>中</td><td>Python/vLLM/Ollama/RAG/Agent</td></tr>
+<tr><td>EXT-04</td><td>上海超级线索</td><td>全栈(AI应用/智能体)</td><td>上海</td><td>10-20K</td><td>低</td><td>全栈/大模型API/RAG/LangChain</td></tr>
+<tr><td>EXT-05</td><td>矩阵起源(深圳)</td><td>全栈/AI应用开发</td><td>南京</td><td>15-25K</td><td>中</td><td>Claude Code/Copilot/全栈/Vibe</td></tr>
+<tr><td>EXT-06</td><td>重庆图坦科技</td><td>全栈智能体开发</td><td>重庆</td><td>10-18K</td><td>低</td><td>Vue/React/后端/RAG/多轮对话</td></tr>
+<tr><td>EXT-07</td><td>深圳图高智能</td><td>AI应用研发</td><td>深圳</td><td>面议</td><td>低</td><td>Python/FastAPI/WebSocket/Agent</td></tr>
+<tr><td>EXT-08</td><td>北京未来式智能</td><td>Agent Engineer</td><td>北京</td><td>15-30K·13薪</td><td>低</td><td>Agent开发/智能体系统</td></tr>
+<tr><td>EXT-09</td><td>广东某半导体</td><td>AI Agent工程师(Infra)</td><td>广东</td><td>未公开</td><td>低</td><td>Python/LangGraph/FastAPI/记忆管理</td></tr>
+<tr><td>EXT-10</td><td>济南银狐网络</td><td>智能体开发</td><td>济南</td><td>未公开</td><td>低</td><td>Dify/Coze/LangChain/MetaGPT</td></tr>
+<tr><td>EXT-11</td><td>南京兑虞科技</td><td>RAG工程师</td><td>南京</td><td>未公开</td><td>低</td><td>RAG管线/混合检索/重排序</td></tr>
+<tr><td>EXT-12</td><td>英诺瑞新(大连)</td><td>AI Engineer(Agent/RAG)</td><td>大连</td><td>未公开</td><td>低</td><td>多Agent/知识库/微调/量化</td></tr>
+<tr><td>EXT-13</td><td>上海铭起</td><td>AI应用开发(远程)</td><td>深圳/远程</td><td>完工结</td><td>低</td><td>Node.js/MySQL/Python/AI应用</td></tr>
+<tr><td>EXT-14</td><td>星洋智慧(杭州)</td><td>兼职智能体开发</td><td>杭州/远程</td><td>项目制</td><td>低</td><td>Java/Python/智能体/AIGC</td></tr>
+<tr><td>EXT-15</td><td>上海外资公司</td><td>Applied AI Engineer</td><td>上海/远程</td><td>面议</td><td>低</td><td>端到端AI研发/提示词/智能代理</td></tr>
+<tr><td>EXT-16</td><td>贝嘉电子</td><td>AI Agent工程师(远程)</td><td>远程</td><td>月结</td><td>低</td><td>Java/Docker/MySQL/Python/架构</td></tr>
+<tr><td>EXT-17</td><td>欧姿生物</td><td>兼职全栈AI应用</td><td>苏州/远程</td><td>3-10K/月</td><td>低</td><td>Cloudflare Workers/OpenAI/RAG</td></tr>
+<tr><td>EXT-18</td><td>杭州高榕科技</td><td>AI全栈开发</td><td>杭州</td><td>未公开</td><td>中</td><td>全栈/Cursor/Windsurf/Copilot</td></tr>
+<tr><td>EXT-19</td><td>杭州利加通讯</td><td>AI工程师</td><td>杭州</td><td>7-14K</td><td>中</td><td>AI工程/产业互联网</td></tr>
+<tr><td>EXT-20</td><td>重庆某公司</td><td>AI应用开发</td><td>重庆</td><td>8-10K</td><td>低</td><td>AI落地/多模态/智能问答</td></tr>
+<tr><td>EXT-21</td><td>炽云科技</td><td>AI Agent开发</td><td>上海</td><td>15-30K·15薪</td><td>中</td><td>AI Agent/LLM应用</td></tr>
+<tr><td>EXT-22</td><td>某企业(北京)</td><td>AI Agent开发</td><td>北京</td><td>20-40K</td><td>中</td><td>精通Python/LLM/系统设计</td></tr>
+<tr><td>EXT-23</td><td>某企业(北京东大桥)</td><td>AI应用与智能体开发</td><td>北京</td><td>13-19K·13薪</td><td>中</td><td>Python/.NET/LangChain/AutoGen/Dify</td></tr>
+<tr><td>EXT-24</td><td>敏实集团</td><td>技术开发-人工智能</td><td>嘉兴</td><td>8-15K·15薪</td><td>中</td><td>AI技术开发/应用落地</td></tr>
+<tr><td>EXT-25</td><td>纬英科技</td><td>资深AI开发</td><td>广州</td><td>21-30K</td><td>低</td><td>AI开发/技术架构</td></tr>
+<tr><td>EXT-26</td><td>云科出海(西安)</td><td>Java开发(Cursor/AI集成)</td><td>西安</td><td>未公开</td><td>低</td><td>Java/Cursor/AI集成/跨境电商</td></tr>
+<tr><td>EXT-27</td><td>天鹜科技(上海)</td><td>AI应用工程师实习</td><td>上海</td><td>实习</td><td>低</td><td>多Agent/酶行业智能体</td></tr>
+<tr><td>EXT-28</td><td>Castbox</td><td>AI应用工程师</td><td>北京</td><td>未公开</td><td>低</td><td>生成式AI/多模态/ComfyUI</td></tr>
+<tr><td>EXT-29</td><td>禅境股份(北京)</td><td>RAG研发工程师</td><td>北京</td><td>未公开</td><td>中</td><td>RAG组件/Agent/知识库</td></tr>
+<tr><td>EXT-30</td><td>武汉蓝讯通</td><td>AI智能体开发</td><td>武汉</td><td>未公开</td><td>低</td><td>需求调研/智能体架构</td></tr>
+<tr><td>EXT-31</td><td>武汉启云方</td><td>AI Agent工程师</td><td>武汉</td><td>10-19K</td><td>低</td><td>AI Agent开发</td></tr>
+<tr><td>EXT-32</td><td>重庆小易智联</td><td>AI agent开发</td><td>重庆</td><td>15-18K</td><td>低</td><td>AI Agent开发</td></tr>
+<tr><td>EXT-33</td><td>云奕传媒</td><td>AI Agent开发</td><td>未注明</td><td>未公开</td><td>低</td><td>电商/Agent策略/用户画像</td></tr>
+<tr><td>EXT-34</td><td>执牛科技(武汉)</td><td>AI智能体开发(实习)</td><td>武汉</td><td>实习</td><td>低</td><td>AI智能体开发</td></tr>
+<tr><td>EXT-35</td><td>杭州红熊智能</td><td>AI应用开发</td><td>杭州</td><td>未公开</td><td>中</td><td>架构设计/AI应用</td></tr>
+<tr><td>EXT-36</td><td>浙江万维空间</td><td>大模型开发</td><td>杭州</td><td>15-35K</td><td>中</td><td>大模型开发/空间信息</td></tr>
+<tr><td>EXT-37</td><td>涌现工场(天津)</td><td>AI应用/RAG工程师</td><td>天津</td><td>6-8K</td><td>低</td><td>RAG系统/知识库/文档解析</td></tr>
+<tr><td>EXT-38</td><td>杭州谦博文化</td><td>大模型开发(培训生)</td><td>杭州</td><td>12-20K</td><td>低</td><td>大模型/AI应用</td></tr>
+<tr><td>EXT-39</td><td>重庆征信公司</td><td>智能体研发</td><td>重庆</td><td>面议</td><td>中</td><td>金融智能体/提示词/多轮对话</td></tr>
+<tr><td>EXT-40</td><td>上海三灯科技</td><td>资深Agent开发</td><td>上海</td><td>未公开</td><td>中</td><td>文档解析/LLM Agent/Workflow/RAG</td></tr>
+<tr><td>EXT-41</td><td>郑州引力琥珀</td><td>RAG系统优化(实习)</td><td>郑州</td><td>实习</td><td>低</td><td>文档切分/向量化/向量检索</td></tr>
+<tr><td>EXT-42</td><td>成都梦成解忧</td><td>大模型应用(全栈)</td><td>成都</td><td>10-13K</td><td>低</td><td>Python/Flask/FastAPI/前后端</td></tr>
+<tr><td>EXT-43</td><td>四川奥凸水处理</td><td>后端(含AI-Agent)</td><td>成都</td><td>未公开</td><td>低</td><td>后端/AI-Agent/提示词/RAG</td></tr>
+<tr><td>EXT-44</td><td>成都大成均图</td><td>高级开发(AI模型)</td><td>成都</td><td>20-35K</td><td>低</td><td>AI模型开发与优化</td></tr>
+<tr><td>EXT-45</td><td>成都天锐星通</td><td>AI开发工程师</td><td>成都</td><td>18-25K·13薪</td><td>中</td><td>相控阵天线AI Agent</td></tr>
+<tr><td>EXT-46</td><td>成都圆梦堂</td><td>AI训练师</td><td>成都</td><td>3-6K</td><td>低</td><td>AI训练/数据标注</td></tr>
+<tr><td>EXT-47</td><td>成都瑞吉慧析</td><td>数据标注/AI训练师</td><td>成都</td><td>4-8K</td><td>低</td><td>数据标注/AI训练/多模态</td></tr>
+<tr><td>EXT-48</td><td>成都汇众天智</td><td>人工智能训练师</td><td>成都</td><td>4-8K</td><td>低</td><td>数据标注/2D拉框</td></tr>
+<tr><td>EXT-49</td><td>成都天之华智能</td><td>人工智能训练师</td><td>成都</td><td>3-5K</td><td>低</td><td>多模态标注/标注平台</td></tr>
+<tr><td>EXT-50</td><td>四川彧希文化</td><td>AIGC生成师</td><td>成都</td><td>6-8K</td><td>低</td><td>AIGC工具/内容生成</td></tr>
+<tr><td>EXT-51</td><td>四川南实卓育</td><td>AI实习生</td><td>成都</td><td>6-12K</td><td>低</td><td>AI教育/AIGC/数字虚拟人</td></tr>
+<tr><td>EXT-52</td><td>四川远见行</td><td>AI产品经理</td><td>成都</td><td>4-8K</td><td>低</td><td>AI内容/智能推荐/自动化</td></tr>
+<tr><td>EXT-53</td><td>成都蜀智云创</td><td>AI大模型-电商直播标注</td><td>成都</td><td>5-8K</td><td>低</td><td>电商标注/数据分析</td></tr>
+<tr><td>EXT-54</td><td>前方高能(成都)</td><td>实施工程师(实习)</td><td>成都</td><td>80-150/天</td><td>低</td><td>项目实施/客户需求/交付</td></tr>
+<tr><td>EXT-55</td><td>透云科技(成都)</td><td>AI算法-大模型工程化</td><td>成都</td><td>25-30K·14薪</td><td>中</td><td>大模型工程化</td></tr>
+<tr><td>EXT-56</td><td>某成都智能硬件(A轮)</td><td>AI应用工程师</td><td>成都</td><td>10-15K</td><td>中</td><td>AI应用开发与落地</td></tr>
+<tr><td>EXT-57</td><td>某成都软件公司</td><td>AI应用开发</td><td>成都</td><td>14-24K</td><td>中</td><td>AI应用开发</td></tr>
+<tr><td>EXT-58</td><td>成都研墨未来</td><td>Dify智能体搭建实习</td><td>成都</td><td>面议</td><td>低</td><td>Dify智能体搭建</td></tr>
+<tr><td>EXT-59</td><td>重庆图坦(补充)</td><td>全栈智能体开发</td><td>重庆</td><td>10-18K</td><td>低</td><td>Vue/React/RAG/多轮对话</td></tr>
+<tr><td>EXT-60</td><td>珠海名家色彩</td><td>Dify开发工程师</td><td>珠海</td><td>15-20K</td><td>低</td><td>Dify开发/二次开发</td></tr>
+<tr><td>EXT-61</td><td>云尚智动</td><td>大模型应用开发实习</td><td>天津</td><td>实习</td><td>低</td><td>智能体/PostgreSQL/Django/Dify</td></tr>
+<tr><td>EXT-62</td><td>火星人智能(昆明)</td><td>智能体开发(培训生)</td><td>昆明</td><td>8-12K</td><td>低</td><td>Agent工程/需求拆解/提示词调优</td></tr>
+<tr><td>EXT-63</td><td>中际联合(3S)</td><td>AI智能体开发</td><td>北京</td><td>25-40K</td><td>中</td><td>RAG/LangChain/Dify/MES-ERP</td></tr>
+<tr><td>EXT-64</td><td>华智未来(重庆)</td><td>产品经理(AI)</td><td>重庆</td><td>10-15K</td><td>低</td><td>AI产品/产品设计</td></tr>
+<tr><td>EXT-65</td><td>国鑫(深圳)</td><td>产品经理(AI产品线)</td><td>深圳</td><td>15-25K</td><td>低</td><td>AI产品线/技术选型/行业方案</td></tr>
+</table>
+</div>
+</details>
+</section>
+
+<footer>
+<p>数据来源：Boss直聘、猎聘、智联招聘、企查查、鱼泡直聘、51job、应届生求职网等公开招聘信息（2026年8-9月）</p>
+<p>报告生成时间：2026年9月15日 · 基于100个真实岗位样本 + 跨境电商AI全链路助手项目方案</p>
+</footer>
+
+</div><!-- /main -->
+
+<script>
+mermaid.initialize({startOnLoad:true, theme:'base', themeVariables:{primaryColor:'#e8f0fe',primaryTextColor:'#0f2540',primaryBorderColor:'#0f2540',lineColor:'#ed8936',fontSize:'13px'}});
+// Sidebar active highlight
+const sections=document.querySelectorAll('section');
+const navLinks=document.querySelectorAll('.sidebar a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-100) current=s.id;});
+  navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+current);});
+});
+</script>
+</body>
+</html>
