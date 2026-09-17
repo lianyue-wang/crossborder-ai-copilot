@@ -4,12 +4,12 @@ uvicorn[standard]==0.27.1
 pydantic==2.6.1
 pydantic-settings==2.1.0
 
-# ===== LLM框架 =====
-langchain==0.2.0
-langchain-core==0.2.0
-langchain-community==0.2.0
-langgraph==0.1.0
-langsmith==0.1.0
+# ===== LLM框架（版本自动兼容，避免冲突） =====
+langchain>=0.2.0,<0.3.0
+langchain-core>=0.2.22,<0.3.0
+langchain-community>=0.2.0,<0.3.0
+langgraph>=0.1.19,<0.2.0
+langsmith>=0.1.17,<0.2.0
 
 # ===== 向量库 =====
 chromadb==0.4.22
@@ -46,7 +46,7 @@ plotly==5.19.0
 
 # ===== 音视频处理 =====
 moviepy==1.0.3
-faster-whisper==0.10.0
+# faster-whisper==0.10.0  # 需要C++编译环境，第3阶段再装
 
 # ===== 开发工具 =====
 ruff==0.2.1

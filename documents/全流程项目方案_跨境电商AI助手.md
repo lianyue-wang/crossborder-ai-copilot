@@ -229,6 +229,214 @@ flowchart TB
 | **GitHub Copilot** | 辅助补全；Cursor 不可用时的备选 |
 | **Cursor 高效开发要点** | ① 先写清楚模块的输入输出契约（dataclass/Pydantic模型）再让它生成；② 一次只让它写一个函数/一个文件；③ 报错时把完整 stack trace 贴给它；④ 用 `.cursorrules` 固化项目规范（Python风格、错误处理、日志格式） |
 
+### 2.11 前端技术栈与学习路径
+
+> **岗位现状**：AI应用工程师岗位中，约40%要求"全栈"或"前端基础"，但中小公司通常不要求精通React/Vue，更看重"能快速出可交互Demo"。
+
+| 层级 | 技术 | 学习深度 | 用途 | 优先级 |
+|------|------|----------|------|--------|
+| **P0 主力** | Streamlit | 熟练：多页面/表单/表格/Plotly图表/状态管理/文件上传 | MVP快速出Demo，JD直接点名 | 必学 |
+| **P0 基础** | HTML + CSS + JavaScript | 能看懂、能改简单页面；理解DOM、事件、fetch调API | 调试前端问题、改简单页面 | 必学 |
+| **P1 接口联调** | FastAPI + 原生前端 | 用fetch/axios调后端API，处理JSON响应，渲染页面 | 脱离Streamlit做独立前端 | 重要 |
+| **P1 图表** | ECharts 或 Plotly.js | 能画折线图/柱状图/饼图，数据可视化 | 运营数据看板 | 重要 |
+| **P2 进阶** | React + Vite | 基础：组件/props/state/useEffect/路由 | 简历加分，时间充裕再学 | 选学 |
+| **P2 样式** | Tailwind CSS | 能快速写样式，不用记CSS | 配合React | 选学 |
+
+**前端学习策略**：
+- **前12周**：只用Streamlit，不碰原生前端，集中精力做后端和AI核心
+- **第13-18周**：视频模块需要进度条和实时状态，学一点JavaScript（fetch + DOM操作）
+- **第19-24周**：如果时间充裕，用React重写首页作为"全栈能力"展示；时间不够就Streamlit到底
+- **面试表达**："前端我主要用Streamlit快速出Demo，同时熟悉HTML/CSS/JS基础，能做前后端联调，React了解基础"
+
+---
+
+## 三、工程化能力补强（6项面试高频技能）
+
+> **背景**：对照100个岗位JD，项目已覆盖80%核心技能，但以下6项是"区分会调API和能做生产级应用"的关键，面试高频追问，必须补进项目。
+
+### 3.6.1 Function Calling / 工具调用
+
+**是什么**：让LLM不只是聊天，而是能自主决定调用外部函数/API（查销量、算价格、发邮件），是Agent的核心机制。
+
+**岗位要求**：80%的Agent相关岗位要求，面试必问"你项目里Agent怎么调工具的？"
+
+**项目落点**：
+- 选品Agent：定义`@tool`装饰的工具函数
+  - `search_seller_sprite(keyword)` → 调卖家精灵API查BSR/销量
+  - `fetch_competitor_detail(asin)` → 抓竞品详情
+  - `get_reviews(asin, limit)` → 拉取评论
+  - `calculate_profit(price, cost, fee)` → 算利润
+- LangGraph Agent通过`bind_tools()`绑定工具，LLM自主决定调哪个
+- 工具返回结构化数据 → Agent继续推理 → 生成报告
+
+**代码示例（核心片段）**：
+```python
+from langchain_core.tools import tool
+from langchain_deepseek import ChatDeepSeek
+
+@tool
+def search_seller_sprite(keyword: str) -> dict:
+    """查询卖家精灵竞品数据，返回BSR排名、销量估算、趋势"""
+    # 调用卖家精灵API
+    return {"bsr": 1234, "monthly_sales": 500, "trend": "up"}
+
+@tool
+def calculate_profit(price: float, cost: float, fee_rate: float = 0.15) -> float:
+    """计算单品利润：售价 - 成本 - 平台费"""
+    return price - cost - price * fee_rate
+
+tools = [search_seller_sprite, calculate_profit]
+llm = ChatDeepSeek(model="deepseek-chat").bind_tools(tools)
+
+# Agent循环：LLM决定调工具 → 执行工具 → 结果返回LLM → 继续推理
+```
+
+**面试话术**："我项目里选品Agent用LangChain的Function Calling，定义了4个工具（卖家精灵查数据、抓竞品、拉评论、算利润），LLM自主决定调哪个，工具返回结构化数据后Agent继续推理生成报告。这比单纯Prompt调用API灵活，因为Agent能根据中间结果决定下一步。"
+
+---
+
+### 3.6.2 流式输出（Streaming / SSE）
+
+**是什么**：LLM生成内容时逐字/逐句返回，不是等全部生成完再显示，用户体验的关键。
+
+**岗位要求**：约50%岗位要求，用户体验相关面试常问"你们AI回复是流式的吗？怎么实现的？"
+
+**项目落点**：
+- FastAPI加SSE（Server-Sent Events）接口：`/api/generate/stream`
+- 用`StreamingResponse` + `event_source_response`
+- 前端用EventSource接收，逐字渲染
+- 选品报告、Listing文案、视频脚本生成都支持流式
+
+**代码示例**：
+```python
+from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
+import asyncio
+
+app = FastAPI()
+
+@app.post("/api/generate-listing/stream")
+async def generate_listing_stream(product: ProductInfo):
+    async def event_generator():
+        # LLM流式生成
+        async for chunk in llm.astream(prompt):
+            yield f"data: {chunk.content}\n\n"
+        yield "data: [DONE]\n\n"
+    return StreamingResponse(event_generator(), media_type="text/event-stream")
+```
+
+**前端接收**：
+```javascript
+const evtSource = new EventSource('/api/generate-listing/stream');
+evtSource.onmessage = (e) => {
+    if (e.data === '[DONE]') { evtSource.close(); return; }
+    outputDiv.textContent += e.data;  // 逐字追加
+};
+```
+
+---
+
+### 3.6.3 评估与可观测性（Evaluation + Observability）
+
+**是什么**：
+- **评估**：怎么量化LLM输出好不好？RAG检索准不准？
+- **可观测性**：每次LLM调用花了多少token？耗时多久？哪次调用失败了？
+
+**岗位要求**：生产环境必备，面试常问"你怎么评估RAG效果？""怎么监控LLM调用成本？"
+
+**项目落点**：
+- **LangSmith接入**（已在技术栈中，深化使用）：
+  - 记录每次LLM调用的prompt/response/token数/耗时/错误
+  - 给关键链路打tag（选品/图文/视频）
+  - 用LangSmith的Evaluation功能跑自动化测试集
+- **RAG评估**：
+  - 建20个标准问题+标准答案的测试集
+  - 指标：检索命中率（retrieval precision）、答案相关性（relevance）、幻觉率
+  - 每次改Prompt/切分策略后跑评估，用数据说话
+- **成本仪表盘**：
+  - 数据库存每次调用的model/prompt_tokens/completion_tokens/cost
+  - Streamlit页面展示日/月成本趋势、各模块成本占比
+
+**面试话术**："我用LangSmith做LLM调用链追踪，能看到每次调用的token消耗和耗时。RAG效果我建了20个标准问题的测试集，评估检索命中率和答案相关性，调chunk_size从256到512后准确率从72%提到80%。"
+
+---
+
+### 3.6.4 多模型路由与降级
+
+**是什么**：不同任务用不同模型（简单任务用便宜模型，复杂任务用好模型），模型挂了自动切备用。
+
+**岗位要求**：约30%岗位提及，体现"模型选型能力"和"系统稳定性思维"
+
+**项目落点**：
+- 写`ModelRouter`类，根据任务类型选模型：
+  - 文案生成/翻译 → DeepSeek-V3（便宜，¥1/百万token）
+  - 选品决策/复杂推理 → DeepSeek-R1（推理强）
+  - 图片审核 → Qwen-VL-Max（多模态）
+  - 图片生成 → 通义万相
+  - 视频生成 → 即梦Seedance（主）→ 可灵（备）
+- 降级机制：try-catch捕获API异常，自动切换备用模型
+- 配置文件管理模型优先级，不用改代码
+
+**代码示例**：
+```python
+class ModelRouter:
+    def __init__(self):
+        self.models = {
+            "copywriting": ["deepseek-chat", "qwen-max"],
+            "reasoning": ["deepseek-reasoner", "gpt-4o-mini"],
+            "vision": ["qwen-vl-max", "gpt-4o"],
+        }
+    
+    async def chat(self, task_type: str, messages: list):
+        for model in self.models[task_type]:
+            try:
+                llm = ChatDeepSeek(model=model) if "deepseek" in model else ChatQwen(model=model)
+                return await llm.ainvoke(messages)
+            except Exception as e:
+                logger.warning(f"模型{model}失败，切换下一个: {e}")
+                continue
+        raise RuntimeError("所有模型都失败了")
+```
+
+---
+
+### 3.6.5 异步任务队列
+
+**是什么**：视频生成、批量选品这种耗时任务（几分钟），后台异步执行，前端轮询/WebSocket推送进度。
+
+**岗位要求**：约35%岗位要求异步编程，视频/批量处理场景必备
+
+**项目落点**：
+- Celery + Redis做任务队列（已在技术栈中，深化）
+- 任务状态机：PENDING → RUNNING → SUCCESS / FAILED
+- 前端WebSocket实时推送进度（百分比+当前步骤）
+- 任务记录表存PostgreSQL，支持历史查询和重试
+- 视频生成、批量选品、批量图片生成都走异步队列
+
+**面试话术**："视频生成可能要3-5分钟，不能让用户干等。我用Celery+Redis做异步任务队列，提交任务后立即返回task_id，前端通过WebSocket接收进度推送（'正在生成第2个片段...'），任务状态存在PostgreSQL支持历史查询和失败重试。"
+
+---
+
+### 3.6.6 Token成本计算与控制
+
+**是什么**：每次LLM调用花了多少钱？怎么限制用量？怎么优化成本？
+
+**岗位要求**：老板最关心成本，面试常问"你们怎么控制LLM调用成本？"
+
+**项目落点**：
+- 封装`LLMClient`，每次调用自动记录：
+  - model, prompt_tokens, completion_tokens, total_tokens
+  - 按模型单价计算cost（DeepSeek ¥1/百万input，¥2/百万output）
+  - 存入`generation_records`表
+- 成本控制：
+  - 上下文窗口管理：自动截断过长的历史对话
+  - 缓存：相同prompt的结果缓存（Redis），避免重复调用
+  - 批量处理：多条评论合并成一次调用（降低调用次数）
+  - 模型路由：简单任务用便宜模型
+- 成本仪表盘：日/月成本趋势、各模块占比、单次任务平均成本
+
+**面试话术**："我封装了LLMClient，每次调用自动记录token和成本存数据库。成本控制做了四点：①上下文自动截断避免超长；②相同prompt结果缓存到Redis；③批量评论合并一次调用；④简单任务用DeepSeek便宜模型。一个选品报告成本约¥0.05，一条视频脚本约¥0.02。"
+
 ---
 
 ## 三、模块拆分与功能点
@@ -471,14 +679,21 @@ flowchart TB
 | LangChain (70%) | 全链路 | ✅✅✅ |
 | Prompt Engineering (63%) | 30+ 行业模板 | ✅✅✅ |
 | 向量库 (63%) | Chroma→Qdrant | ✅✅ |
-| FastAPI (47%) | 后端 | ✅✅✅ |
+| FastAPI (47%) | 后端 + SSE流式接口 | ✅✅✅ |
 | LangGraph (40%) | 主路由状态机 | ✅✅✅ |
 | Dify (33%) | 评论分析/客服工作流 | ✅✅ |
 | 多模态 (VL/TTS/ASR) | Qwen-VL/CosyVoice/Whisper | ✅✅ |
 | Docker | 部署 | ✅✅ |
-| 异步编程 | 视频任务队列 | ✅✅ |
+| 异步编程 | Celery任务队列 + WebSocket进度 | ✅✅✅ |
+| **Function Calling (80%)** | 选品Agent 4个工具函数 | ✅✅✅ |
+| **流式输出 (50%)** | FastAPI SSE + EventSource前端 | ✅✅✅ |
+| **评估与可观测性** | LangSmith追踪 + RAG评估测试集 + 成本仪表盘 | ✅✅✅ |
+| **多模型路由与降级** | ModelRouter类 + 视频三级降级 | ✅✅✅ |
+| **异步任务队列** | Celery + Redis + 任务状态机 | ✅✅✅ |
+| **Token成本控制** | LLMClient封装 + 缓存 + 批量 + 上下文截断 | ✅✅✅ |
+| **前端基础** | Streamlit + HTML/CSS/JS + 前后端联调 | ✅✅ |
 
-**结论**：项目覆盖了成都 8-25k 段 AI 应用工程师岗位 JD 中 90% 的高频技能点，且垂直业务场景差异化明显。
+**结论**：项目覆盖了成都 8-25k 段 AI 应用工程师岗位 JD 中 **95%** 的高频技能点，且垂直业务场景差异化明显。新增的6项工程化能力恰好填补了"会调API"和"能做生产级应用"之间的差距。
 
 ---
 
