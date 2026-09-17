@@ -208,7 +208,7 @@ def greet_with_default(name, greeting="Hello"):
 
 print(greet_with_default("Alice"))           # Hello, Alice!
 print(greet_with_default("Alice", "Hi"))     # Hi, Alice!
-
+print("测试提交代码，苹果也太傻逼了")
 # 关键字参数（调用时指定参数名，顺序可以乱）
 def create_user(name, age, city="未知"):
     """创建用户信息字典。
