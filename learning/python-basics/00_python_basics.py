@@ -683,26 +683,26 @@ print([w.upper() for w in words if len(w)>3])
 # 提示：class Calculator: def add(self, a, b): ...
 # try: ... except ZeroDivisionError: ...
 
-# class Calculator:
-#     # 你的代码
+class Calculator:
+    # 你的代码
     
 
-#     def add(self,a,b):
-#          return a+b
-#     def divide(self,a,b):
-#         try:
-#             r=a/b
-#         except ZeroDivisionError as e:
-#         finally:
-#             print("没有异常")
+    def add(self,a,b):
+         return a+b
+    def divide(self,a,b):
+        try:
+            r=a/b
+        except ZeroDivisionError :
+            print("除数不能为0")
+            return None
            
 
 
-# calc = Calculator()
-# print(calc.add(90,9))
+calc = Calculator()
+print(calc.add(90,9))
 
-# print(calc.add(3, 5))       # 期望: 8
-# print(calc.divide(10, 0))   # 期望: 打印错误提示，返回 None
+print(calc.add(3, 5))       # 期望: 8
+print(calc.divide(10, 0))   # 期望: 打印错误提示，返回 None
 
 # class Person:
 #     # 类变量（所有实例共享，Java的static变量）
@@ -733,19 +733,23 @@ def sum_of_even_squares(nums):
 
 print(sum_of_even_squares([1,2,3,4,5,6]))  # 期望: 56 (4+16+36)
 """
-
+nums=[1,2,3,4,5,6]
+def sum_of_even_squares(nums):
+    return sum(num ** 2 for num in nums if num % 2 == 0)
+print(f"偶数的平方和为{sum_of_even_squares(nums)}")
+    
 # 练习22（选做）：读一个文件，统计非空行数
 # 提示：with open(文件, "r", encoding="utf-8") as f: for line in f:
 # 空行判断：if line.strip():
-"""
-def count_non_empty_lines(filepath):
-    # 你的代码
+# """
+# def count_non_empty_lines(filepath):
+#     # 你的代码
 
-# 先自己建一个 test.txt 文件，写几行文字（含空行），再统计
-# print(count_non_empty_lines("test.txt"))
-"""
+# # 先自己建一个 test.txt 文件，写几行文字（含空行），再统计
+# # print(count_non_empty_lines("test.txt"))
+# """
 
 
-print("\n=== Python基础语法学习完成 ===")
-print("下一步：做练习题，然后运行 01_decorators.py 学装饰器")
-print("下一步：做练习题，然后运行 01_decorators.py 学装饰器")
+# print("\n=== Python基础语法学习完成 ===")
+# print("下一步：做练习题，然后运行 01_decorators.py 学装饰器")
+# print("下一步：做练习题，然后运行 01_decorators.py 学装饰器")
