@@ -208,7 +208,6 @@ def greet_with_default(name, greeting="Hello"):
 
 print(greet_with_default("Alice"))           # Hello, Alice!
 print(greet_with_default("Alice", "Hi"))     # Hi, Alice!
-print("测试提交代码，苹果也太傻逼了")
 # 关键字参数（调用时指定参数名，顺序可以乱）
 def create_user(name, age, city="未知"):
     """创建用户信息字典。
@@ -381,6 +380,7 @@ with open("test.txt", "r", encoding="utf-8") as f:
         print(line.strip())  # strip()去掉换行符
 
 # 清理测试文件
+from ast import If
 import os
 os.remove("test.txt")
 
@@ -448,72 +448,304 @@ for循环             for(int i=0;i<n;i++)   for i in range(n):
 
 
 # ============================================================
-# 十四、练习题（必须动手写）
+# 十四、练习题（由易到难，9关递进，必须动手写）
+# ============================================================
+# 用法：每道题先自己写 → 跑 → 对了看下一题；卡住看提示
+# 提示还不够 → 把题目和你的代码贴给AI问
 # ============================================================
 
-# 练习1：写一个函数，接收一个列表，返回其中所有偶数的平方和
-# 提示：列表推导式 + sum()
+# ============================================================
+# 第1关：热身——打印、变量、f-string（最简单，建立手感）
+# ============================================================
+
+# 练习1：打印一行字
+# 提示：print("内容")
+"""
+print("你好，Python")
+"""
+
+# 练习2：两个数字相加，打印结果
+# 提示：a = 10，b = 20，然后 print(a + b)
+"""
+# 你的代码
+"""
+
+# 练习3：用 f-string 拼接一句话
+# 提示：name = "小明"，age = 28，print(f"...")
+# f-string格式：f"文本{变量}文本"
+"""
+name = "小明"
+age = 28
+# 你的代码：打印 "我叫小明，今年28岁"
+"""
+nume="梨花"
+age=8
+print(f"我的小猫咪名字叫{nume}今年{age}岁了")
+# ============================================================
+# 第2关：字符串基础
+# ============================================================
+
+# 练习4：把单词转大写，并打印长度
+# 提示：word.upper() 转大写，len(word) 取长度
+"""
+word = "python"
+# 你的代码：打印大写版本和长度
+"""
+
+# 练习5：字符串拼接
+# 提示：用 + 拼接，或者 f-string
+"""
+first = "Hello"
+last = "World"
+# 你的代码：打印 "Hello World"
+"""
+
+# ============================================================
+# 第3关：列表基础（重点：append 和 for 遍历）
+# ============================================================
+
+# 练习6：创建一个空列表，把1到5放进去
+# 提示：nums = []，然后 nums.append(1) 逐个加
+"""
+nums = []
+# 你的代码：把 1,2,3,4,5 加进 nums
+print(nums)  # 期望: [1, 2, 3, 4, 5]
+"""
+"""nums=[0,12,23,4]
+print(nums)"""
+# 练习7：遍历列表，把每个元素打印出来
+# 提示：for n in nums: print(n)
+"""
+nums = [10, 20, 30]
+# 你的代码：把每个数打印出来
+"""
+
+# 练习8：不用max()，用循环找出列表中最大的数
+# 提示：max_num = 0，遍历时如果 n > max_num 就更新
+"""
+
+max_num = 0
+# 你的代码：循环比较，找出最大值
+print(max_num)  # 期望: 19
+for循环             for(int i=0;i<n;i++)   for i in range(n):
+"""
+nums = [5, 12, 7, 19, 3]
+max_num=0;
+for x in nums:
+    if x > max_num:
+        max_num=x
+print(max_num)
+# ============================================================
+# 第4关：条件判断 + 循环
+# ============================================================
+
+# 练习9：判断一个数是奇数还是偶数
+# 提示：n % 2 == 0 是偶数（余数判断，和Java一样）
+"""
+n = 17
+# 你的代码：打印 "偶数" 或 "奇数"
+"""
+n = 17
+if n%2==0:
+    print(f"{n}是奇数")
+else:
+    print(f"{n}是偶数")
+
+# 练习10：for循环累加 1 到 100
+# 提示：total = 0，for i in range(1, 101)，total = total + i
+"""
+total = 0
+# 你的代码
+print(total)  # 期望: 5050
+"""
+x=0
+for i in range (1,101):
+        x=x+i
+print(f"累加到的数字为{x}")
+# 练习11：把 1 到 20 的所有偶数存进一个列表
+# 提示：先用空列表，循环里判断，偶数就 append
+"""
+evens = []
+# 你的代码：range(1, 21) 里挑偶数
+print(evens)  # 期望: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+"""
+s=[]
+for i in range(1,21):
+    if i%2==0:
+        s.append(i)
+print(f"代码里的偶数数组是{s}")
+
+# ============================================================
+# 第5关：函数
+# ============================================================
+
+# 练习12：定义一个打招呼函数
+# 提示：def greet(name): 里面 print(f"你好，{name}")
+"""
+def greet(name):
+    # 你的代码
+
+greet("张三")   # 期望输出: 你好，张三
+"""
+def greet(name):
+    print (f"定义一个打招呼的函数{name}")
+
+greet("老王")
+# 练习13：定义一个加法函数，返回结果
+# 提示：def add(a, b): return a + b
+"""
+def add(a, b):
+    # 你的代码
+
+result = add(3, 5)
+print(result)   # 期望: 8
+"""
+def add(a, b):
+    return a+b
+print()
+# 练习14：定义函数，判断一个数是不是偶数，返回True/False
+# 提示：return n % 2 == 0
+"""
+def is_even(n):
+    # 你的代码
+
+print(is_even(4))   # 期望: True
+print(is_even(7))   # 期望: False
+"""
+def is_even(n):
+    if n % 2 == 0:
+        print(True)
+    if n % 2 != 0:
+        print (False)
+is_even(9)
+# ============================================================
+# 第6关：字典
+# ============================================================
+
+# 练习15：创建一个字典存商品信息，打印价格
+# 提示：product = {"name": "手机", "price": 1999}
+"""
+# 你的代码：创建字典，name=手机 price=1999
+# 打印价格
+"""
+product = {"name": "手机", "price": 1999}
+print (product.get("price"))
+# 练习16：统计列表中每个数字出现的次数（字典累加）
+# 提示：counts[num] = counts.get(num, 0) + 1
+"""
+nums = [1, 2, 2, 3, 3, 3]
+counts = {}
+# 你的代码：遍历nums，统计每个数字出现几次
+print(counts)  # 期望: {1: 1, 2: 2, 3: 3}
+"""
+nums = [1, 2, 2, 3, 3, 3]
+counts = {}
+for num in nums:
+   counts[num] = counts.get(num, 0) + 1
+print(counts)
+# ============================================================
+# 第7关：列表推导式
+# ============================================================
+
+# 练习17：最简单的推导式——每个数翻倍
+# 提示：
+"""
+nums = [1, 2, 3, 4, 5]
+# 你的代码：用推导式生成 [2, 4, 6, 8, 10]
+"""
+nums = [1, 2, 3, 4, 5]
+print([x*2 for x in nums] )
+
+# 练习18：推导式 + 条件——只要偶数
+# 提示：[x for x in nums if x % 2 == 0]
+"""
+
+# 你的代码：推导式，只要偶数
+# 期望: [2, 4, 6]
+"""
+nums = [1, 2, 3, 4, 5, 6]
+print([x for x in nums if x % 2 ==0])
+# 练习19：推导式综合——长度大于3的单词转大写
+# 提示：[w.upper() for w in words if len(w) > 3]
+"""
+words = ["cat", "elephant", "dog", "tiger", "bird"]
+# 你的代码：推导式
+# 期望: ['ELEPHANT', 'TIGER', 'BIRD']
+"""
+words = ["cat", "elephant", "dog", "tiger", "bird"]
+print([w.upper() for w in words if len(w)>3])
+# ============================================================
+# 第8关：类 + 异常
+# ============================================================
+
+# 练习20：写一个类 Calculator，有 add 和 divide 两个方法
+# divide 遇到除零要处理异常（返回 None 并打印错误）
+# 提示：class Calculator: def add(self, a, b): ...
+# try: ... except ZeroDivisionError: ...
+
+# class Calculator:
+#     # 你的代码
+    
+
+#     def add(self,a,b):
+#          return a+b
+#     def divide(self,a,b):
+#         try:
+#             r=a/b
+#         except ZeroDivisionError as e:
+#         finally:
+#             print("没有异常")
+           
+
+
+# calc = Calculator()
+# print(calc.add(90,9))
+
+# print(calc.add(3, 5))       # 期望: 8
+# print(calc.divide(10, 0))   # 期望: 打印错误提示，返回 None
+
+# class Person:
+#     # 类变量（所有实例共享，Java的static变量）
+#     species = "Human"
+
+#     def __init__(self, name, age):
+#         """构造方法（Java的构造函数），self相当于Java的this"""
+#         self.name = name       # 实例变量
+#         self.age = age
+
+#     def say_hello(self):
+#         """实例方法，第一个参数必须是self"""
+#         return f"我是{self.name}，今年{self.age}岁"
+
+
+# ============================================================
+# 第9关：综合挑战（选做）
+# ============================================================
+
+# 练习21：写一个函数，接收数字列表，返回所有偶数的平方和
+# 拆解步骤（按顺序做）：
+#   1. 先用 for 循环找出偶数，存进列表
+#   2. 再算平方和
+#   3. 跑通了，试着用推导式改写成一行
 """
 def sum_of_even_squares(nums):
-    \"\"\"计算列表中所有偶数的平方和。
-
-    Args:
-        nums: 数字列表，如 [1,2,3,4,5,6]
-
-    Returns:
-        所有偶数的平方和，如 2²+4²+6² = 56
-    \"\"\"
     # 你的代码
-    pass
 
 print(sum_of_even_squares([1,2,3,4,5,6]))  # 期望: 56 (4+16+36)
 """
 
-# 练习2：写一个函数，接收一个字符串，返回每个单词出现次数的字典
-# 提示：用 dict.get(word, 0) + 1
-"""
-def word_count(text):
-    \"\"\"统计字符串中每个单词出现的次数。
-
-    Args:
-        text: 输入字符串，单词用空格分隔
-
-    Returns:
-        字典，key是单词，value是出现次数，如 {'hello': 2, 'world': 1}
-    \"\"\"
-    # 你的代码
-    pass
-
-print(word_count("hello world hello python"))
-# 期望: {'hello': 2, 'world': 1, 'python': 1}
-"""
-
-# 练习3：写一个类 Calculator，有 add/subtract/multiply/divide 四个方法
-# divide 要处理除零异常，返回 None 并打印错误
-"""
-class Calculator:
-    # 你的代码
-    pass
-
-calc = Calculator()
-print(calc.add(3, 5))       # 8
-print(calc.divide(10, 0))   # 打印错误，返回 None
-"""
-
-# 练习4：用列表推导式，从下面列表中找出所有长度大于3的单词，转大写
-"""
-words = ["cat", "elephant", "dog", "tiger", "bird"]
-# 你的代码，结果应该是 ['ELEPHANT', 'TIGER', 'BIRD']
-"""
-
-# 练习5：写一个函数，读取一个文件，统计行数（空行不算）
-# 提示：with open + for line in f + if line.strip()
+# 练习22（选做）：读一个文件，统计非空行数
+# 提示：with open(文件, "r", encoding="utf-8") as f: for line in f:
+# 空行判断：if line.strip():
 """
 def count_non_empty_lines(filepath):
     # 你的代码
-    pass
+
+# 先自己建一个 test.txt 文件，写几行文字（含空行），再统计
+# print(count_non_empty_lines("test.txt"))
 """
 
 
 print("\n=== Python基础语法学习完成 ===")
+print("下一步：做练习题，然后运行 01_decorators.py 学装饰器")
 print("下一步：做练习题，然后运行 01_decorators.py 学装饰器")
