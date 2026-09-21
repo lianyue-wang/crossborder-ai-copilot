@@ -34,12 +34,12 @@ def count_up_to_gen(n):
 nums_list = count_up_to(5)       # 返回 [1,2,3,4,5]，占内存
 nums_gen = count_up_to_gen(5)    # 返回生成器对象，几乎不占内存
 
-print(type(nums_gen))  # <class 'generator'>
+print((f"生成器测试{nums_gen}"))  # <class 'generator'>  # pyright: ignore[reportUndefinedVariable]
 
 # 生成器是可迭代对象，可以用 for 遍历
 for num in nums_gen:
-    print(num, end=" ")  # 1 2 3 4 5
-print()
+    print(num)  # 1 2 3 4 5
+print(f"循环输出了")
 
 # 也可以用 next() 逐个取
 nums_gen2 = count_up_to_gen(3)

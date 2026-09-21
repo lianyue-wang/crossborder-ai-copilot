@@ -145,7 +145,7 @@ def slow_function():
     time.sleep(0.5)
     return "finished"
 
-# print(slow_function())  # 取消注释看效果
+print(slow_function())  # 取消注释看效果
 
 
 # 2. 重试装饰器（API调用必备，你项目里会用到）
