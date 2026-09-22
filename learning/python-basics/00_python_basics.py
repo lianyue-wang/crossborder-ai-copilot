@@ -735,7 +735,11 @@ print(sum_of_even_squares([1,2,3,4,5,6]))  # 期望: 56 (4+16+36)
 """
 nums=[1,2,3,4,5,6]
 def sum_of_even_squares(nums):
-    return sum(num ** 2 for num in nums if num % 2 == 0)
+    r=0
+    for num in nums :
+        if num %2 ==0:
+            r=r+num**2
+    return r
 print(f"偶数的平方和为{sum_of_even_squares(nums)}")
     
 # 练习22（选做）：读一个文件，统计非空行数
