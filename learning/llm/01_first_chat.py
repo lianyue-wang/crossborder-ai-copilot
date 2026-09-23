@@ -26,7 +26,7 @@ client = OpenAI(
 response = client.chat.completions.create(
     model="deepseek-chat",     # 模型名
     messages=[
-        {"role": "user", "content": "你好，用一句话介绍你自己"}
+        {"role": "user", "content": "我之前是一名2年工作经验的java程序员，但是技术比较菜只会crud，后面转行做了一年跨境电商产品开发，但是ai出来过后我手写了一个skill，ai智能体就能把我的工作做到百分之八十了我觉得肯定会被替代而且工资只有五千块，所以我现在在学python转行回去做ai应用开发，分析一下职业前景怎么样，"}
     ]
 )
 
