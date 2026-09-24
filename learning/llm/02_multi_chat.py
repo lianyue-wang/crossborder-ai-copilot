@@ -40,6 +40,33 @@ print("=== 选品顾问AI（输入'退出'结束）===\n")
 # ========== 你来写 ==========
 # 现在messages已经有了system角色。下面全部由你自己写。
 #
+# ---- 伪代码总览（照着翻译成 Python，注意缩进层级）----
+# while 一直为真:
+#     # 第2步：读用户输入
+#     存进变量 = input(...)
+#     # 第3步：退出判断
+#     如果 变量 等于 "退出": break
+#     # 第4步：把用户消息追加进 messages（字典：role="user", content=变量）
+#     messages.append(字典)
+#     # 第5步：调 AI → 得到 response
+#     response = client.chat.completions.create(model=..., messages=...)
+#     # 第6步：取回复文字 → reply
+#     reply = response.choices[0].message.content
+#     # 第7步：把 AI 回复也追加进 messages（字典：role="assistant", content=reply）
+#     messages.append(字典)
+#     # 第8步：打印
+#     print(reply)
+while True:
+    userinput= input("你：")
+    if userinput=="退出":
+        break
+    model="deepseek-chat"
+    messages.append({"role":"user","content":userinput})
+    response=client.chat.completions.create(model=model, messages=messages)
+    rep=response.choices[0].message.content
+    messages.append({"role":"assistant","content":rep})
+    print(f"ai:回复内容  {rep}")
+#
 # ===== 第1步：创建无限循环 =====
 # 写一个 while True:
 # 为什么：你不想每说一句话就重新运行脚本，要像微信聊天那样一直说一直回。
