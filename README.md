@@ -68,11 +68,13 @@
 |---|---|
 | `documents/学习路线与技能清单_v2_最终版.md` | **唯一基线**：技能清单、架构边界、评测口径 |
 | `documents/里程碑与推进节奏.md` | M0–M7 验收标准，不绑日期 |
+| `documents/参考教程对照_补入清单.md` | 与《ai-agents-from-zero》33 章逐章对照，10 项补入 + 工时影响 |
 | `documents/模块A-B_选品到内容_数据流设计.md` | 选品到内容的数据流、素材三档、词库分层 |
 | `documents/岗位要求与能力映射.md` | 能力与真实岗位要求的对照 |
 | `docs/progress/state.md` | 当前状态 |
 | `docs/progress/speed-log.md` | 估算 vs 实际，用于预测 |
 | `docs/progress/usage-log.md` | 真实使用记录 |
+| `docs/reference-tracking.md` | 参考教程的上游版本、精读清单与核对记录 |
 
 `documents/archive/` 下是已作废的历史版本，不再引用。
 

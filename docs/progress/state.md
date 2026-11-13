@@ -10,7 +10,7 @@
 | 里程碑 | **M0 地基** |
 | 当前任务卡 | `cli/chat.py` |
 | 卡在 | 四个函数壳全是 `raise NotImplementedError`，尚未开始 |
-| 最近一次 commit | 无（仓库尚未 `git init`） |
+| 最近一次 commit | `5053d9d` 学习计划 v2（已推送 origin/master） |
 
 ## 已完成
 
@@ -18,6 +18,9 @@
 - [x] 模块 A/B 数据流设计
 - [x] 里程碑表（M0–M7，不绑日期）
 - [x] 学习教练 skill v1.2.0（技能路径 / Agent 工程 / 自我检验 / 模块设计 / 数据接入 / 工程标准）
+- [x] 参考教程全量对照（33 章 + 2 项目），补入 10 项、+6 天（`documents/参考教程对照_补入清单.md`）
+- [x] 参考教程本地化 + 追踪基线（`E:\ai-project\ai-agents-from-zero`，稀疏检出，commit `fe39818`）
+- [x] 项目接入 GitHub（`lianyue-wang/crossborder-ai-copilot`，master 分支）
 
 ## 未开始
 
