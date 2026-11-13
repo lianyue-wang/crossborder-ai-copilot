@@ -1,0 +1,5 @@
+files found: 4
+51job_agent_dev_20261029.csv | rows=135 | cols=11 | dup=0 | empty={'experience': 135, 'education': 135, 'skills': 7}
+51job_ai_dev_20261029.csv | rows=100 | cols=11 | dup=0 | empty={'experience': 100, 'education': 100, 'skills': 7}
+boss_agent_dev_20261029.csv | rows=100 | cols=10 | dup=0 | empty={}
+boss_ai_dev_20261029.csv | rows=100 | cols=10 | dup=0 | empty={}

@@ -1,86 +1,110 @@
-# 跨境电商AI全链路助手 (Cross-border E-commerce AI Copilot)
+# 跨境电商 AI 全链路助手 (Cross-border E-commerce AI Copilot)
 
-> 用AI打通跨境电商「选品 → 图文 → 视频 → 运营」全流程
+> 一个亚马逊卖家的自用生产力工具：把「选品 → 内容 → 运营诊断」串成两条闭环。
 
-## 项目简介
+## 这是什么
 
-面向跨境电商卖家的AI全链路助手，覆盖从选品调研到上架运营的完整工作流：
+我是一个亚马逊产品开发者，选品、写 listing、做素材、看广告数据都是日常。这些活手工做太慢，所以我把它做成工具。
 
-- **选品**：卖家精灵数据接入 + 竞品分析 + 评论挖掘 + RAG选品知识库
-- **图文**：Listing文案生成 + 产品图生成（通义万相API + ComfyUI）+ 合规审核
-- **视频**：脚本生成 + AI视频（即梦Seedance）+ 配音 + 字幕 + 自动合成
-- **运营**：评论情感分析 + 客服FAQ + 广告文案 + 数据看板
+不是演示项目，是要每天用的东西。所以它有几条硬约束：
 
-## 技术栈
+1. **产品真实性不能交给生成模型** —— 主图必须是实拍，AI 只做场景和排版
+2. **数据只用自己有权使用的** —— 店铺后台导出、官方 API/MCP，不爬竞品
+3. **只出草稿，人工确认后才发** —— 不做自动上架
 
-| 类别 | 技术 |
-|------|------|
-| 语言 | Python 3.11 |
-| LLM框架 | LangChain 0.2 + LangGraph 0.1 |
-| 后端 | FastAPI 0.110 |
-| 前端 | Streamlit 1.34 |
-| 数据库 | PostgreSQL 16 + Chroma向量库 |
-| 缓存/队列 | Redis 7 + Celery |
-| 对象存储 | MinIO |
-| 多模态 | DeepSeek / Qwen-VL / 通义万相 / 即梦Seedance / CosyVoice |
-| 低代码 | Dify |
-| 部署 | Docker + Docker Compose |
-| 开发 | Cursor + GitHub Copilot |
+## 模块与边界
 
-## 快速开始
+四个模块，但**只有一个用 Agent**。其余是确定性工作流，因为工作流可测、可回放、成本可预测。
 
-### 1. 环境要求
-- Docker Desktop
-- Python 3.11+
-- Poetry（可选，用于本地开发）
+| 模块 | 形态 | 输入 → 输出 |
+|---|---|---|
+| **A 选品决策** | **Agent**（工具集不确定、调用顺序依赖中间结果） | 关键词/类目 → 选品评分卡 + 候选品 |
+| **B1 词库 + 文案** | 工作流（固定依赖顺序） | 产品信息 → 分层词库 + Listing 草稿 + 埋词报告 |
+| **B2 图文** | 工作流 | 实拍/供应商图 + 卖点 → 可上架附图 + 合规校验结果 |
+| **B3 视频** | 工作流（流水线） | 产品图 + 卖点 → 15s 带字幕配音短视频 |
+| **C 运营诊断** | 工作流（规则 + 检索 + LLM 组织语言） | 销售/广告报告 + 知识库 → 诊断结论 + 3–5 条动作建议 |
+| **D 知识库** | 支撑层，非独立模块 | 官方文档 + 自有 SOP → 可引用条目 |
 
-### 2. 启动基础服务
-```bash
-cp .env.example .env
-docker-compose up -d postgres redis minio chroma
+两条闭环：
+
+```
+[运营诊断] ──差评/搜索词──> [选品决策] ──> [词库/文案] ──> [图文/视频] ──> 上架
+     ↑                                                                      │
+     └────────────────── 销售 / 广告数据回流 ───────────────────────────────┘
 ```
 
-### 3. 运行开发脚本
-```bash
-# 安装依赖
-pip install -r requirements.txt
+## 技术选型原则
 
-# 运行第一个脚本
-python scripts/csv_stats.py
+不写死版本号，装之前查官方文档确认（见 `requirements.txt` 注释）。
+
+| 层 | 选型 | 为什么 |
+|---|---|---|
+| LLM | DeepSeek API（模型名以官方文档为准） | 成本低、国内可直连 |
+| 编排 | LangGraph | 需要 checkpointer 做断点续跑 |
+| 数据 | Pandas 清洗 + Pydantic 校验 | 多源对齐是纯代码活，最吃后端功底 |
+| 后端 | FastAPI + SSE | 流式输出 |
+| 存储 | PostgreSQL + Redis | 历史状态、缓存、任务队列 |
+| 异步 | Celery | 视频任务耗时长 |
+| 前端 | Streamlit | 界面不是价值点，够用即可 |
+| 部署 | Docker Compose | 本地一键起，云上同构 |
+
+## 当前进度
+
+**M0（地基）进行中。**
+
+```
+[x] 环境与依赖约定
+[x] 数据源三实现设计（mock / snapshot / live）
+[ ] CLI 聊天机器人 v0.1  ← 当前卡在这里
+[ ] Pydantic 数据校验
+[ ] Git 提交规范
 ```
 
-## 项目结构
+进度详情见 `docs/progress/state.md`，节奏与验收见 `documents/里程碑与推进节奏.md`。
+
+## 文档索引
+
+| 文档 | 内容 |
+|---|---|
+| `documents/学习路线与技能清单_v2_最终版.md` | **唯一基线**：技能清单、架构边界、评测口径 |
+| `documents/里程碑与推进节奏.md` | M0–M7 验收标准，不绑日期 |
+| `documents/模块A-B_选品到内容_数据流设计.md` | 选品到内容的数据流、素材三档、词库分层 |
+| `documents/岗位要求与能力映射.md` | 能力与真实岗位要求的对照 |
+| `docs/progress/state.md` | 当前状态 |
+| `docs/progress/speed-log.md` | 估算 vs 实际，用于预测 |
+| `docs/progress/usage-log.md` | 真实使用记录 |
+
+`documents/archive/` 下是已作废的历史版本，不再引用。
+
+## 目录结构
 
 ```
 E-commerce-ai/
-├── app/                    # 主应用代码
-│   ├── api/               # FastAPI路由
-│   ├── agents/            # LangGraph Agent
-│   ├── rag/               # RAG知识库
-│   ├── services/          # 业务服务
-│   └── core/              # 配置/工具
-├── scripts/               # 工具脚本
-├── data/                  # 数据文件
-├── prompts/               # Prompt模板库
-├── comfyui-workflows/     # ComfyUI工作流
-├── docker/                # Docker配置
-├── docs/                  # 文档
-├── docker-compose.yml
-├── .env.example
-├── .cursorrules
-└── README.md
+├── app/                 # 主应用（FastAPI / Agent / RAG / services）
+├── cli/                 # 命令行工具，当前主战场
+├── learning/            # 学习期练习代码（Python 基础 / LLM 调用）
+├── documents/           # 方案与基线文档
+│   └── archive/         # 作废版本
+├── docs/
+│   └── progress/        # 进度、速度日志、使用记录
+├── prompts/             # Prompt 模板
+├── scripts/             # 工具脚本
+├── docker/              # Dockerfile
+└── docker-compose.yml
 ```
 
-## 开发进度
+## 快速开始
 
-- [ ] Phase 1：选品 + RAG知识库（W1-6）
-- [ ] Phase 2：图文生成（W7-12）
-- [ ] Phase 3：视频生成（W13-18）
-- [ ] Phase 4：运营 + 整合 + 部署（W19-24）
+```bash
+cp .env.example .env      # 填入 DEEPSEEK_API_KEY
+pip install -r requirements.txt
+python cli/chat.py
+```
 
-## 开发规范
+## 开发约定
 
-- 每天至少1次commit，commit message遵循Conventional Commits规范
-- Python代码遵循PEP 8，使用ruff格式化
-- 配置通过环境变量管理，密钥不入库
-- AI生成代码必须逐行review后才能commit
+- 每个里程碑至少一个可运行的增量，不做"写完了但跑不起来"
+- 外部调用必须有超时数值、重试、降级，否则不合入
+- 自主循环必须有步数上限、token 预算、墙钟上限
+- 全链路带 `trace_id`
+- 密钥只走环境变量，`.env` 永不入仓
